@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:usainua/pages/income%20screen/password%20_has%20_been%20_sent_screen.dart';
+import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
