@@ -1,52 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
+import 'package:usainua/routes/app_router.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+  // await DataBase.instance.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: const Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-
-          ),
+    return
+        // MultiRepositoryProvider(
+        //   providers: const [
+        //     // RepositoryProvider(create: (context) => UserRepository()),
+        //     // RepositoryProvider(create: (context) => AuthReposytory('')),
+        //     // RepositoryProvider(create: (context) => TalesListRepository()),
+        //     // RepositoryProvider(create: (context) => SelectionsListRepository()),
+        //   ],
+        //   child:
+        //    MultiBlocProvider(
+        //     providers: const [
+        //       // BlocProvider<AuthBlockBloc>(create: (context) => AuthBlockBloc()),
+        //       // BlocProvider<SelectionsBloc>(create: (context) => SelectionsBloc()),
+        //       // BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
+        //       // BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
+        //       // BlocProvider<ProfileBloc>(create: (context) => ProfileBloc()),
+        //       // BlocProvider<DeleteBloc>(create: (context) => DeleteBloc()),
+        //       // BlocProvider<SubscribeBloc>(create: (context) => SubscribeBloc()),
+        //       // BlocProvider<RecordBloc>(create: (context) => RecordBloc()),
+        //       // BlocProvider<AudioScreenBloc>(create: (context) => AudioScreenBloc()),
+        //     ],
+        //     child:
+        const MaterialApp(
+      // builder: BotToastInit(),
+      // navigatorObservers: [BotToastNavigatorObserver()],
+      debugShowCheckedModeBanner: true,
+      initialRoute: SignInScreen.routeName,
+      onGenerateRoute: AppRouter.generateRoute,
+      //   ),
+      // ),
     );
   }
 }
