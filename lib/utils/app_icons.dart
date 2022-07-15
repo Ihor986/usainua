@@ -3,7 +3,7 @@ class AppIcons {
   static const String yey = 'assets/icons/yey.svg';
   static const String lock = 'assets/icons/Lock.svg';
   static const String profile = 'assets/icons/Profile.svg';
-  // static const String list = 'assets/icons/list.svg';
+  static const String password = 'assets/icons/Password.svg';
   // static const String profile = 'assets/icons/profile.svg';
   // static const String arrowDown = 'assets/icons/arrow_down.svg';
   // static const String repeat = 'assets/icons/repeat.svg';

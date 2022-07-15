@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
+import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
+import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
@@ -19,35 +22,13 @@ class SignInScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: const [
-            _TextIncome(),
+            TextIncome(),
             _IncomeForm(),
             _RemindPassword(),
             _SignUp(),
             _GoogleIncome(),
             _FacebookIncome(),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TextIncome extends StatelessWidget {
-  const _TextIncome({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return Align(
-      alignment: const Alignment(-0.974, -0.76),
-      child: Text(
-        'Вход',
-        style: TextStyle(
-          color: AppColors.textColor,
-          fontSize: screen.height * 0.052,
-          fontWeight: FontWeight.w800,
-          fontStyle: FontStyle.normal,
-          letterSpacing: 0.5,
         ),
       ),
     );
@@ -142,25 +123,29 @@ class __IncomeFormState extends State<_IncomeForm> {
           ),
           Padding(
             padding: const EdgeInsets.all(5),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: AppColors.greenButtonColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16.0),
-                ),
-              ),
-              width: screen.width - 42,
-              height: screen.height * 0.069,
-              child: TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'ВОЙТИ',
-                  style: TextStyle(
-                    color: AppColors.greenButtonTextColor,
-                  ),
-                ),
-              ),
+            child: GreenButton(
+              text: 'ВОЙТИ',
+              onPressed: () {},
             ),
+            // child: Container(
+            //   decoration: const BoxDecoration(
+            //     color: AppColors.greenButtonColor,
+            //     borderRadius: BorderRadius.all(
+            //       Radius.circular(16.0),
+            //     ),
+            //   ),
+            //   width: screen.width - 42,
+            //   height: screen.height * 0.069,
+            //   child: TextButton(
+            //     onPressed: () {},
+            //     child: const Text(
+            //       'ВОЙТИ',
+            //       style: TextStyle(
+            //         color: AppColors.greenButtonTextColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ),
         ],
       ),
@@ -177,7 +162,10 @@ class _RemindPassword extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: screen.height * 0.56),
       child: ListTile(
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, RemindPasswordScreen.routeName, (route) => false);
+        },
         title: Row(children: [
           SvgPicture.asset(
             AppIcons.lock,

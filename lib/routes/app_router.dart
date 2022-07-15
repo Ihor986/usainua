@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:usainua/pages/income%20screen/password%20_has%20_been%20_sent_screen.dart';
+import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 
 class AppRouter {
@@ -14,13 +16,13 @@ class AppRouter {
         builder = (_) => const SignInScreen();
         break;
 
-      // case RegularUserPage.routeName:
-      //   builder = (_) => const RegularUserPage();
-      //   break;
+      case RemindPasswordScreen.routeName:
+        builder = (_) => const RemindPasswordScreen();
+        break;
 
-      // case NewUserPage.routeName:
-      //   builder = (_) => const NewUserPage();
-      //   break;
+      case PasswordHasBeenSentScreen.routeName:
+        builder = (_) => const PasswordHasBeenSentScreen();
+        break;
 
       // case TicketDetailsPage.routeName:
       //   final TicketDetailsPageArguments args =
