@@ -127,25 +127,6 @@ class __IncomeFormState extends State<_IncomeForm> {
               text: 'ВОЙТИ',
               onPressed: () {},
             ),
-            // child: Container(
-            //   decoration: const BoxDecoration(
-            //     color: AppColors.greenButtonColor,
-            //     borderRadius: BorderRadius.all(
-            //       Radius.circular(16.0),
-            //     ),
-            //   ),
-            //   width: screen.width - 42,
-            //   height: screen.height * 0.069,
-            //   child: TextButton(
-            //     onPressed: () {},
-            //     child: const Text(
-            //       'ВОЙТИ',
-            //       style: TextStyle(
-            //         color: AppColors.greenButtonTextColor,
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ),
         ],
       ),

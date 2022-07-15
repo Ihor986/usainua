@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/pages/income%20screen/password%20_has%20_been%20_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
+import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
@@ -93,27 +94,12 @@ class _RemindPasswordButton extends StatelessWidget {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(top: screen.height * 0.43, left: 5, right: 5),
-      child: Container(
-        decoration: const BoxDecoration(
-          color: AppColors.greenButtonColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(16.0),
-          ),
-        ),
-        width: screen.width - 42,
-        height: screen.height * 0.069,
-        child: TextButton(
-          onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(
-                context, PasswordHasBeenSentScreen.routeName, (route) => false);
-          },
-          child: const Text(
-            'НАПОМНИТЬ ПАРОЛЬ',
-            style: TextStyle(
-              color: AppColors.greenButtonTextColor,
-            ),
-          ),
-        ),
+      child: GreenButton(
+        text: 'НАПОМНИТЬ ПАРОЛЬ',
+        onPressed: () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, PasswordHasBeenSentScreen.routeName, (route) => false);
+        },
       ),
     );
   }
