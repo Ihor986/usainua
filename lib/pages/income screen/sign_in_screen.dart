@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:usainua/utils/app_colors.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -12,10 +13,16 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Stack(
-        children: const [
-          _TextIncome(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Stack(
+          children: const [
+            Align(
+              alignment: Alignment(-0.97, -0.76),
+              child: _TextIncome(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -33,7 +40,6 @@ class _TextIncome extends StatelessWidget {
         color: AppColors.textColor,
         fontSize: screen.height * 0.052,
         fontWeight: FontWeight.w800,
-        fontFamily: 'Lato',
         fontStyle: FontStyle.normal,
         letterSpacing: 0.5,
       ),

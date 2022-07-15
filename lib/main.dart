@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/routes/app_router.dart';
 
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
         //       // BlocProvider<AudioScreenBloc>(create: (context) => AudioScreenBloc()),
         //     ],
         //     child:
-        const MaterialApp(
+        MaterialApp(
+      theme: _buildTheme(Brightness.dark),
       // builder: BotToastInit(),
       // navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: true,
@@ -52,6 +54,14 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: AppRouter.generateRoute,
       //   ),
       // ),
+    );
+  }
+
+  ThemeData _buildTheme(brightness) {
+    var baseTheme = ThemeData(brightness: brightness);
+
+    return baseTheme.copyWith(
+      textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
     );
   }
 }
