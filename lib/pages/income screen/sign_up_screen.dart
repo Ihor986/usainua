@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/list_tile_button.dart';
@@ -177,7 +178,10 @@ class _SignUpFormState extends State<_SignUpForm> {
             padding: const EdgeInsets.all(5),
             child: GreenButton(
               text: 'Зарегистрироваться',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(context,
+                    CodeConfirmationsScreen.routeName, (route) => false);
+              },
             ),
           ),
         ],

@@ -96,6 +96,7 @@ class _ImageText extends StatelessWidget {
             style: TextStyle(
               color: AppColors.textColor,
               fontSize: screen.height * 0.017,
+              fontWeight: FontWeight.w400,
             ),
             softWrap: true,
           ),

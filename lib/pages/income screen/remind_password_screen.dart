@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
+import 'package:usainua/pages/income%20screen/widgets/hint_text.dart';
 import 'package:usainua/pages/income%20screen/widgets/list_tile_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
@@ -20,7 +21,7 @@ class RemindPasswordScreen extends StatelessWidget {
         child: Stack(
           children: const [
             TextIncome(text: 'Вход'),
-            _HelperText(),
+            _HintText(),
             _LoginInput(),
             _RemindPasswordButton(),
             _RememberedPasswordButton(),
@@ -32,23 +33,16 @@ class RemindPasswordScreen extends StatelessWidget {
   }
 }
 
-class _HelperText extends StatelessWidget {
-  const _HelperText({Key? key}) : super(key: key);
+class _HintText extends StatelessWidget {
+  const _HintText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(top: screen.height * 0.24 - 16),
-      child: Text(
-        'Введите эл. почту или телефон',
-        style: TextStyle(
-          color: AppColors.blueIconsColor,
-          fontSize: screen.height * 0.019,
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.normal,
-          letterSpacing: 0.5,
-        ),
+      child: const HintText(
+        text: 'Введите эл. почту или телефон',
       ),
     );
   }
