@@ -34,7 +34,7 @@ class _Image extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.11),
+      padding: EdgeInsets.only(top: screen.height * 0.11 - 16),
       child: SvgPicture.asset(
         AppImages.innotimerafiki,
         height: screen.height * 0.4,
@@ -51,7 +51,7 @@ class _ImageText extends StatelessWidget {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(
-          top: screen.height * 0.51, left: screen.width * 0.019),
+          top: screen.height * 0.51 - 16, left: screen.width * 0.019),
       child: Column(
         children: [
           Text.rich(
@@ -112,7 +112,8 @@ class _Next extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.84, left: 5, right: 5),
+      padding:
+          EdgeInsets.only(top: screen.height * 0.84 - 16, left: 5, right: 5),
       child: GreenButton(
         text: 'ПРОДОЛЖИТЬ',
         onPressed: () {

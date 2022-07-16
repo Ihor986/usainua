@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
+import 'package:usainua/pages/income%20screen/widgets/list_tile_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
@@ -19,15 +19,15 @@ class RemindPasswordScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Stack(
           children: const [
-            TextIncome(),
+            TextIncome(text: 'Вход'),
             _HelperText(),
             _LoginInput(),
             _RemindPasswordButton(),
             _RememberedPasswordButton(),
-            // _FacebookIncome(),
           ],
         ),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
@@ -39,7 +39,7 @@ class _HelperText extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.24),
+      padding: EdgeInsets.only(top: screen.height * 0.24 - 16),
       child: Text(
         'Введите эл. почту или телефон',
         style: TextStyle(
@@ -61,7 +61,8 @@ class _LoginInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.3, left: 5, right: 5),
+      padding:
+          EdgeInsets.only(top: screen.height * 0.3 - 16, left: 5, right: 5),
       child: TextFormField(
         decoration: const InputDecoration(
           hintText: 'Ваш email или телефон',
@@ -93,7 +94,8 @@ class _RemindPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.43, left: 5, right: 5),
+      padding:
+          EdgeInsets.only(top: screen.height * 0.43 - 16, left: 5, right: 5),
       child: GreenButton(
         text: 'НАПОМНИТЬ ПАРОЛЬ',
         onPressed: () {
@@ -112,31 +114,14 @@ class _RememberedPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.53),
-      child: ListTile(
+      padding: EdgeInsets.only(top: screen.height * 0.53 - 16),
+      child: ListTileButton(
+        text: 'Я вспомнил свой пароль',
+        icon: AppIcons.password,
         onTap: () {
           Navigator.pushNamedAndRemoveUntil(
               context, SignInScreen.routeName, (route) => false);
         },
-        title: Row(children: [
-          SvgPicture.asset(
-            AppIcons.password,
-            color: AppColors.blueIconsColor,
-            width: screen.width * 0.04,
-          ),
-          SizedBox(
-            width: screen.width * 0.05,
-          ),
-          Text(
-            'Я вспомнил свой пароль',
-            style: TextStyle(
-              color: AppColors.textColor,
-              fontSize: screen.height * 0.017,
-              fontWeight: FontWeight.w700,
-              fontStyle: FontStyle.normal,
-            ),
-          ),
-        ]),
       ),
     );
   }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
+import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
+import 'package:usainua/pages/income%20screen/widgets/list_tile_button.dart';
+import 'package:usainua/pages/income%20screen/widgets/media_income_button.dart';
 import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/utils/app_images.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({
@@ -18,19 +20,28 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Stack(
-          children: const [
-            TextIncome(),
-            _IncomeForm(),
-            _RemindPassword(),
-            _SignUp(),
-            _GoogleIncome(),
-            _FacebookIncome(),
-          ],
+      body: GestureDetector(
+        onTap: () {
+          if (FocusNode().hasFocus) {
+            FocusScope.of(context).unfocus();
+          } else {
+            FocusScope.of(context).requestFocus(FocusNode());
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Stack(
+            children: const [
+              TextIncome(text: 'Вход'),
+              _IncomeForm(),
+              _RemindPassword(),
+              _SignUp(),
+              _MedisIncome(),
+            ],
+          ),
         ),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
@@ -50,7 +61,7 @@ class __IncomeFormState extends State<_IncomeForm> {
     final Size screen = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.23),
+      padding: EdgeInsets.only(top: screen.height * 0.23 - 16),
       child: Column(
         children: [
           Form(
@@ -141,31 +152,14 @@ class _RemindPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.56),
-      child: ListTile(
+      padding: EdgeInsets.only(top: screen.height * 0.56 - 16),
+      child: ListTileButton(
+        text: 'Напомнить пароль',
+        icon: AppIcons.lock,
         onTap: () {
           Navigator.pushNamedAndRemoveUntil(
               context, RemindPasswordScreen.routeName, (route) => false);
         },
-        title: Row(children: [
-          SvgPicture.asset(
-            AppIcons.lock,
-            color: AppColors.blueIconsColor,
-            width: screen.width * 0.04,
-          ),
-          SizedBox(
-            width: screen.width * 0.05,
-          ),
-          Text(
-            'Напомнить пароль',
-            style: TextStyle(
-              color: AppColors.textColor,
-              fontSize: screen.height * 0.017,
-              fontWeight: FontWeight.w700,
-              fontStyle: FontStyle.normal,
-            ),
-          ),
-        ]),
       ),
     );
   }
@@ -178,107 +172,29 @@ class _SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.6),
-      child: ListTile(
+      padding: EdgeInsets.only(top: screen.height * 0.6 - 16),
+      child: ListTileButton(
+        text: 'Зарегистрироваться',
+        icon: AppIcons.profilePlus,
         onTap: () {
-          // print(screen.height);
+          Navigator.pushNamedAndRemoveUntil(
+              context, SignUpScreen.routeName, (route) => false);
         },
-        title: Row(children: [
-          SvgPicture.asset(
-            AppIcons.profile,
-            color: AppColors.blueIconsColor,
-            width: screen.width * 0.05,
-          ),
-          SizedBox(
-            width: screen.width * 0.04,
-          ),
-          Text(
-            'Зарегистрироваться',
-            style: TextStyle(
-              color: AppColors.textColor,
-              fontSize: screen.height * 0.017,
-              fontWeight: FontWeight.w700,
-              fontStyle: FontStyle.normal,
-            ),
-          ),
-        ]),
       ),
     );
   }
 }
 
-class _GoogleIncome extends StatelessWidget {
-  const _GoogleIncome({Key? key}) : super(key: key);
+class _MedisIncome extends StatelessWidget {
+  const _MedisIncome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.74, left: 5, right: 5),
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        decoration: const BoxDecoration(
-          color: AppColors.mediaButtonBackgroundColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(16.0),
-          ),
-        ),
-        width: screen.width - 42,
-        height: screen.height * 0.069,
-        child: TextButton(
-          onPressed: () {},
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Войти как пользователь',
-                style: TextStyle(
-                  color: AppColors.textColor,
-                ),
-              ),
-              SvgPicture.asset(AppImages.google),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _FacebookIncome extends StatelessWidget {
-  const _FacebookIncome({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.82, left: 5, right: 5),
-      child: Container(
-        padding: const EdgeInsets.all(5),
-        decoration: const BoxDecoration(
-          color: AppColors.mediaButtonBackgroundColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(16.0),
-          ),
-        ),
-        width: screen.width - 42,
-        height: screen.height * 0.069,
-        child: TextButton(
-          onPressed: () {},
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Войти как пользователь',
-                style: TextStyle(
-                  color: AppColors.textColor,
-                ),
-              ),
-              SvgPicture.asset(AppImages.facebook),
-            ],
-          ),
-        ),
-      ),
+      padding:
+          EdgeInsets.only(top: screen.height * 0.74 - 16, left: 5, right: 5),
+      child: const MedisIncome(),
     );
   }
 }
