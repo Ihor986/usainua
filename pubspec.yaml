@@ -43,6 +43,8 @@ dependencies:
   firebase_storage: ^10.3.2
   cloud_firestore: ^3.3.0
   bot_toast: ^4.0.3
+  google_sign_in: ^5.4.0
+  flutter_facebook_auth: ^3.5.0
 
 dev_dependencies:
   flutter_test:
