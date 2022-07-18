@@ -197,7 +197,7 @@ class _Registered extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.69 - 16),
+      padding: EdgeInsets.only(top: screen.height * 0.7 - 16),
       child: ListTileButton(
         text: 'Я уже зарегистрирован',
         icon: AppIcons.password,
