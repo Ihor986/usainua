@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
-import 'package:usainua/pages/income%20screen/widgets/green_button.dart';
-import 'package:usainua/pages/income%20screen/widgets/hint_text.dart';
-import 'package:usainua/pages/income%20screen/widgets/list_tile_button.dart';
-import 'package:usainua/pages/income%20screen/widgets/text_income.dart';
+import 'package:usainua/widgets/income%20screen/green_button.dart';
+import 'package:usainua/widgets/income%20screen/hint_text.dart';
+import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
+import 'package:usainua/widgets/income%20screen/text_income.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 
@@ -85,12 +87,10 @@ class _SignUpFormState extends State<_SignUpForm> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _Num(),
-                _Num(),
-                _Num(),
-                _Num(),
-              ],
+                children: List<Widget>.generate(6, (int index) {
+                  return const _Num();
+                },
+              ),
             ),
             SizedBox(
               height: screen.height * 0.059,
@@ -100,7 +100,9 @@ class _SignUpFormState extends State<_SignUpForm> {
               child: GreenButton(
                 text: 'Зарегистрироваться',
                 onPressed: () {
+                  context.read<AuthBloc>().add(SignUpEvent());
                   Navigator.pushNamedAndRemoveUntil(
+                    
                       context, SignInScreen.routeName, (route) => false);
                 },
               ),
@@ -119,7 +121,7 @@ class _Num extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return SizedBox(
-      width: screen.height * 0.08,
+      width: screen.width * 0.1,
       height: screen.height * 0.08,
       child: TextFormField(
         onChanged: (value) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
 
 class TextIncome extends StatelessWidget {
   const TextIncome({Key? key, required this.text}) : super(key: key);

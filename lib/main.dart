@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/firebase_options.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/routes/app_router.dart';
@@ -34,9 +36,9 @@ class MyApp extends StatelessWidget {
         //     // RepositoryProvider(create: (context) => SelectionsListRepository()),
         //   ],
         //   child:
-        //    MultiBlocProvider(
-        //     providers: const [
-        //       // BlocProvider<AuthBlockBloc>(create: (context) => AuthBlockBloc()),
+           MultiBlocProvider(
+            providers:  [
+              BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
         //       // BlocProvider<SelectionsBloc>(create: (context) => SelectionsBloc()),
         //       // BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
         //       // BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
@@ -45,8 +47,8 @@ class MyApp extends StatelessWidget {
         //       // BlocProvider<SubscribeBloc>(create: (context) => SubscribeBloc()),
         //       // BlocProvider<RecordBloc>(create: (context) => RecordBloc()),
         //       // BlocProvider<AudioScreenBloc>(create: (context) => AudioScreenBloc()),
-        //     ],
-        //     child:
+            ],
+            child:
         MaterialApp(
       theme: _buildTheme(Brightness.dark),
       // builder: BotToastInit(),
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
       initialRoute: SignInScreen.routeName,
       onGenerateRoute: AppRouter.generateRoute,
       //   ),
-      // ),
+      ),
     );
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:usainua/pages/acquaintance%20screen/acquaintance.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
@@ -38,9 +39,14 @@ class AppRouter {
 
       // End Login
 
-      // case CodeConfirmationsScreen.routeName:
-      // builder = (_) => const CodeConfirmationsScreen();
-      // break;
+      case AcquaintanceScreen.routeName:
+      builder = (_) => const AcquaintanceScreen();
+      break;
+
+// 
+
+
+
 
       // case RemindPasswordScreen.routeName:
       //   builder = (_) => const RemindPasswordScreen();
