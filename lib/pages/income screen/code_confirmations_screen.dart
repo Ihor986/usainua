@@ -87,7 +87,9 @@ class _SignUpFormState extends State<_SignUpForm> {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List<Widget>.generate(6, (int index) {
+              children: List<Widget>.generate(
+                6,
+                (int index) {
                   return const _Num();
                 },
               ),
@@ -100,10 +102,9 @@ class _SignUpFormState extends State<_SignUpForm> {
               child: GreenButton(
                 text: 'Зарегистрироваться',
                 onPressed: () {
-                  context.read<AuthBloc>().add(SignUpEvent());
-                  Navigator.pushNamedAndRemoveUntil(
-                    
-                      context, SignInScreen.routeName, (route) => false);
+                  context.read<AuthBloc>().add(
+                        SignUpEvent(context: context),
+                      );
                 },
               ),
             ),

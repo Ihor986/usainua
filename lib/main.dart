@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: _buildTheme(Brightness.dark),
-        // builder: BotToastInit(),
-        // navigatorObservers: [BotToastNavigatorObserver()],
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: true,
         initialRoute: SignInScreen.routeName,
         onGenerateRoute: AppRouter.generateRoute,

@@ -159,12 +159,12 @@ class __IncomeFormState extends State<_IncomeForm> {
                 child: GreenButton(
                   text: 'ВОЙТИ',
                   onPressed: () {
-
+                    if (!_formKey.currentState!.validate()) return;
                     if (_user?.phoneNumber ==
                         state.authService.phoneInputController.text) {
                       Navigator.pushNamedAndRemoveUntil(context,
                           AcquaintanceScreen.routeName, (route) => false);
-                    } else if (_formKey.currentState!.validate()) {
+                    } else {
                       context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
                       Navigator.pushNamedAndRemoveUntil(context,
                           CodeConfirmationsScreen.routeName, (route) => false);

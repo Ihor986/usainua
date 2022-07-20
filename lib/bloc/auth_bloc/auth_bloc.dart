@@ -1,6 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:usainua/repositorys/auth_repositury.dart';
-// import 'package:meta/meta.dart';
+import 'package:usainua/repositorys/auth_repository.dart';
 import 'package:usainua/services/auth_service/auth_service.dart';
 
 part 'auth_event.dart';
@@ -22,13 +22,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     on<SignUpEvent>(
       (event, emit) {
-        state.authReposytory.sendCodeToFirebase();
+        state.authReposytory.sendCodeToFirebase(event.context);
       },
     );
     on<SignInWithGoogleEvent>(
       (event, emit) {
-        print('SignInWithGoogleEvent');
-        state.authReposytory.googleLogin();
+        state.authReposytory.googleLogin(event.context);
       },
     );
   }

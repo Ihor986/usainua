@@ -13,68 +13,69 @@ class MedisIncome extends StatelessWidget {
     final Size screen = MediaQuery.of(context).size;
     return Column(
       children: [
-        Container(
-          padding: const EdgeInsets.all(5),
-          decoration: const BoxDecoration(
-            color: AppColors.mediaButtonBackgroundColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16.0),
-            ),
-          ),
-          width: screen.width - 42,
-          height: screen.height * 0.069,
-          child: TextButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Войти как пользователь',
-                  style: TextStyle(
-                    color: AppColors.textColor,
-                  ),
-                ),
-                SvgPicture.asset(
-                  AppImages.facebook,
-                ),
-              ],
-            ),
-          ),
+        _Button(
+          icon: AppImages.facebook,
+          onPressed: () {},
+          screen: screen,
         ),
         SizedBox(
           height: screen.height * 0.012,
         ),
-        Container(
-          padding: const EdgeInsets.all(5),
-          decoration: const BoxDecoration(
-            color: AppColors.mediaButtonBackgroundColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16.0),
-            ),
-          ),
-          width: screen.width - 42,
-          height: screen.height * 0.069,
-          child: TextButton(
-            onPressed: () {
-              context.read<AuthBloc>().add(SignInWithGoogleEvent());
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Войти как пользователь',
-                  style: TextStyle(
-                    color: AppColors.textColor,
-                  ),
-                ),
-                SvgPicture.asset(
-                  AppImages.google,
-                ),
-              ],
-            ),
-          ),
+        _Button(
+          icon: AppImages.google,
+          onPressed: () {
+            context.read<AuthBloc>().add(
+                  SignInWithGoogleEvent(context: context),
+                );
+          },
+          screen: screen,
         ),
       ],
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  const _Button(
+      {Key? key,
+      required this.icon,
+      required this.onPressed,
+      required this.screen})
+      : super(key: key);
+
+  final Size screen;
+  final void Function() onPressed;
+  final String icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(5),
+      decoration: const BoxDecoration(
+        color: AppColors.mediaButtonBackgroundColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(16.0),
+        ),
+      ),
+      width: screen.width - 42,
+      height: 56,
+      child: TextButton(
+        onPressed: onPressed,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Войти как пользователь',
+              style: TextStyle(
+                color: AppColors.textColor,
+              ),
+            ),
+            SvgPicture.asset(
+              icon,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

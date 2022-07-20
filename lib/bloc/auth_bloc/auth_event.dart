@@ -2,7 +2,10 @@ part of 'auth_bloc.dart';
 
 abstract class AuthEvent {}
 
-class SignUpEvent extends AuthEvent {}
+class SignUpEvent extends AuthEvent {
+  SignUpEvent({required this.context});
+  final BuildContext context;
+}
 
 class OnChangePhoneEvent extends AuthEvent {
   OnChangePhoneEvent({required this.value});
@@ -15,6 +18,6 @@ class VerifyPhoneNumberEvent extends AuthEvent {
 }
 
 class SignInWithGoogleEvent extends AuthEvent {
-  //  OnChangePhoneEvent({required this.value});
-  //  final String value;
+  SignInWithGoogleEvent({required this.context});
+  final BuildContext context;
 }
