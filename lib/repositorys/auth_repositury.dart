@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:flutter/material.dart';
 
 class AuthReposytory {
   AuthReposytory({this.phoneNumberForVerification});
+
+  // Phone Auth
   String? phoneNumberForVerification;
-  // String phoneNumber = '';
   String verificationCode = '';
   String smsCode = '555555';
   FirebaseAuth auth = FirebaseAuth.instance;
   bool? isNewUser;
-  // User? firebaseUser;
-  // LocalUser? localUser;
 
   void setPhoneNumberForVerification(String value) {
     phoneNumberForVerification = value;
@@ -22,7 +22,6 @@ class AuthReposytory {
       phoneNumber: phoneNumberForVerification!,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential).then((value) async {
-
           if (value.user != null) {}
         });
       },
@@ -63,13 +62,38 @@ class AuthReposytory {
       print('wrong pass');
       throw Exception('wrong pass');
     }
+  }
 
-    // .whenComplete(() {})
-    // .onError((error, stackTrace) {
-    //   setState(() {
-    //     _textEditingController.text = "";
-    //     this._status = Status.Error;
-    //   });
-    // });
+  // google auth
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _user;
+  GoogleSignInAccount get user => _user!;
+  Future googleLogin() async {
+    print('googleLogin1');
+    final googleUser = await googleSignIn.signIn();
+    print('googleLogin11');
+    if (googleUser == null) return;
+    print('googleLogin1');
+    _user = googleUser;
+    final googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+    // await auth.signInWithCredential(credential);
+    try {
+      await auth.signInWithCredential(credential).then((value) {
+        // isNewUser = value.additionalUserInfo?.isNewUser;
+        // print('4'+value. .toString());
+        // Navigator.of(context, rootNavigator: true).pushNamedAndRemoveUntil(
+        //   YouSuperPage.routeName,
+        //   (_) => false,
+        // );
+        print('user logged in');
+      });
+    } catch (_) {
+      print('wrong pass');
+      throw Exception('wrong pass');
+    }
   }
 }

@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
         //     // RepositoryProvider(create: (context) => SelectionsListRepository()),
         //   ],
         //   child:
-           MultiBlocProvider(
-            providers:  [
-              BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
+        MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
         //       // BlocProvider<SelectionsBloc>(create: (context) => SelectionsBloc()),
         //       // BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
         //       // BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
@@ -49,16 +49,15 @@ class MyApp extends StatelessWidget {
         //       // BlocProvider<SubscribeBloc>(create: (context) => SubscribeBloc()),
         //       // BlocProvider<RecordBloc>(create: (context) => RecordBloc()),
         //       // BlocProvider<AudioScreenBloc>(create: (context) => AudioScreenBloc()),
-            ],
-            child:
-        MaterialApp(
-      theme: _buildTheme(Brightness.dark),
-      // builder: BotToastInit(),
-      // navigatorObservers: [BotToastNavigatorObserver()],
-      debugShowCheckedModeBanner: true,
-      initialRoute: SignInScreen.routeName,
-      onGenerateRoute: AppRouter.generateRoute,
-      //   ),
+      ],
+      child: MaterialApp(
+        theme: _buildTheme(Brightness.dark),
+        // builder: BotToastInit(),
+        // navigatorObservers: [BotToastNavigatorObserver()],
+        debugShowCheckedModeBanner: true,
+        initialRoute: SignInScreen.routeName,
+        onGenerateRoute: AppRouter.generateRoute,
+        //   ),
       ),
     );
   }

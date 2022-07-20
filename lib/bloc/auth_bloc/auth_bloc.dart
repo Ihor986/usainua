@@ -25,5 +25,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.authReposytory.sendCodeToFirebase();
       },
     );
+    on<SignInWithGoogleEvent>(
+      (event, emit) {
+        print('SignInWithGoogleEvent');
+        state.authReposytory.googleLogin();
+      },
+    );
   }
 }

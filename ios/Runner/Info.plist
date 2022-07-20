@@ -27,16 +27,18 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>phoneVerify</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app-1-83153149289-ios-70ab1090b89764f2c8b1f8</string>
+				<string>com.googleusercontent.apps.83153149289-5ta0bc64f34kb83teiibkfa5m0hqi6ld</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>None</string>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>app-1-83153149289-ios-70ab1090b89764f2c8b1f8</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

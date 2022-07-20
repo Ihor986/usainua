@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_images.dart';
 
@@ -53,7 +55,9 @@ class MedisIncome extends StatelessWidget {
           width: screen.width - 42,
           height: screen.height * 0.069,
           child: TextButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<AuthBloc>().add(SignInWithGoogleEvent());
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
