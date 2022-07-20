@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
-import 'package:usainua/pages/acquaintance%20screen/acquaintance.dart';
+import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
@@ -91,7 +91,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                               Radius.circular(16.0),
                             ),
                           ),
-                          fillColor: AppColors.inputBackgroundColor,
+                          fillColor: AppColors.grayBackground,
                           filled: true,
                         ),
                         keyboardType: TextInputType.phone,
@@ -111,7 +111,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                         },
                       ),
                     ),
-                    _user == null
+                    _user != null
                         ? Padding(
                             padding: const EdgeInsets.all(5),
                             child: TextFormField(
@@ -126,7 +126,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                                     Radius.circular(16.0),
                                   ),
                                 ),
-                                fillColor: AppColors.inputBackgroundColor,
+                                fillColor: AppColors.grayBackground,
                                 filled: true,
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -159,6 +159,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                 child: GreenButton(
                   text: 'ВОЙТИ',
                   onPressed: () {
+
                     if (_user?.phoneNumber ==
                         state.authService.phoneInputController.text) {
                       Navigator.pushNamedAndRemoveUntil(context,

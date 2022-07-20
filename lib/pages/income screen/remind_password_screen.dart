@@ -69,7 +69,7 @@ class _LoginInput extends StatelessWidget {
               Radius.circular(16.0),
             ),
           ),
-          fillColor: AppColors.inputBackgroundColor,
+          fillColor: AppColors.grayBackground,
           filled: true,
         ),
         keyboardType: TextInputType.phone,

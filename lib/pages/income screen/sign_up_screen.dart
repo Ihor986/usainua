@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
+import 'package:usainua/utils/app_colors.dart';
+import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/income%20screen/green_button.dart';
 import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/media_income_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
-import 'package:usainua/utils/app_colors.dart';
-import 'package:usainua/utils/app_icons.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -61,8 +61,8 @@ class _SignUpFormState extends State<_SignUpForm> {
         return Padding(
           padding: EdgeInsets.only(top: screen.height * 0.23 - 16),
           child: SizedBox(
-            height: screen.height * 0.4,
-            child: SingleChildScrollView (
+            height: screen.height * 0.5,
+            child: SingleChildScrollView(
               child: Column(
                 children: [
                   Form(
@@ -89,7 +89,7 @@ class _SignUpFormState extends State<_SignUpForm> {
                                   Radius.circular(16.0),
                                 ),
                               ),
-                              fillColor: AppColors.inputBackgroundColor,
+                              fillColor: AppColors.grayBackground,
                               filled: true,
                             ),
                             // keyboardType: TextInputType.phone,
@@ -118,7 +118,7 @@ class _SignUpFormState extends State<_SignUpForm> {
                                   Radius.circular(16.0),
                                 ),
                               ),
-                              fillColor: AppColors.inputBackgroundColor,
+                              fillColor: AppColors.grayBackground,
                               filled: true,
                             ),
                             // keyboardType: TextInputType.phone,
@@ -148,7 +148,7 @@ class _SignUpFormState extends State<_SignUpForm> {
                                   Radius.circular(16.0),
                                 ),
                               ),
-                              fillColor: AppColors.inputBackgroundColor,
+                              fillColor: AppColors.grayBackground,
                               filled: true,
                             ),
                             keyboardType: TextInputType.phone,
@@ -210,9 +210,13 @@ class _SignUpFormState extends State<_SignUpForm> {
                       text: 'Зарегистрироваться',
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
-                          Navigator.pushNamedAndRemoveUntil(context,
-                              CodeConfirmationsScreen.routeName, (route) => false);
+                          context
+                              .read<AuthBloc>()
+                              .add(VerifyPhoneNumberEvent());
+                          Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              CodeConfirmationsScreen.routeName,
+                              (route) => false);
                         }
                       },
                     ),

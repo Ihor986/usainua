@@ -5,7 +5,7 @@ class AppIcons {
   static const String profile = 'assets/icons/Profile.svg';
   static const String profilePlus = 'assets/icons/addUser.svg';
   static const String password = 'assets/icons/Password.svg';
-  // static const String profile = 'assets/icons/profile.svg';
+  static const String pageViewIndicator = 'assets/icons/pageViewIndicator.svg';
   // static const String arrowDown = 'assets/icons/arrow_down.svg';
   // static const String repeat = 'assets/icons/repeat.svg';
   // static const String pauseAll = 'assets/icons/pauseAll.svg';
