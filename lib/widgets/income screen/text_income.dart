@@ -9,8 +9,9 @@ class TextIncome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.14 - 16),
+    return Align(
+      alignment: const Alignment(-1, -0.74),
+      // padding: EdgeInsets.only(top: screen.height * 0.14 - 16),
       child: Text(
         text,
         style: TextStyle(

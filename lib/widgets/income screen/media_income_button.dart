@@ -11,26 +11,36 @@ class MedisIncome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        _Button(
-          icon: AppImages.facebook,
-          onPressed: () {},
-          screen: screen,
-        ),
-        SizedBox(
-          height: screen.height * 0.012,
-        ),
-        _Button(
-          icon: AppImages.google,
-          onPressed: () {
-            context.read<AuthBloc>().add(
-                  SignInWithGoogleEvent(context: context),
-                );
-          },
-          screen: screen,
-        ),
-      ],
+    return SizedBox(
+      height: 122,
+      //  height: screen.height * 0.15,
+      // child: SingleChildScrollView(
+      child: Column(
+        children: [
+          _Button(
+            icon: AppImages.facebook,
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                    SignInWithFbEvent(context: context),
+                  );
+            },
+            screen: screen,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          _Button(
+            icon: AppImages.google,
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                    SignInWithGoogleEvent(context: context),
+                  );
+            },
+            screen: screen,
+          ),
+        ],
+      ),
+      //   ),
     );
   }
 }

@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
+import 'package:usainua/utils/app_colors.dart';
+import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/income%20screen/green_button.dart';
 import 'package:usainua/widgets/income%20screen/hint_text.dart';
 import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
-import 'package:usainua/utils/app_colors.dart';
-import 'package:usainua/utils/app_icons.dart';
 
 class CodeConfirmationsScreen extends StatelessWidget {
   const CodeConfirmationsScreen({Key? key}) : super(key: key);

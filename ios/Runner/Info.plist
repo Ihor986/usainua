@@ -40,9 +40,23 @@
 				<string>app-1-83153149289-ios-70ab1090b89764f2c8b1f8</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1067732233874488</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FacebookAppID</key>
+	<string>1067732233874488</string>
+	<key>FacebookClientToken</key>
+	<string>CLIENT-TOKEN</string>
+	<key>FacebookDisplayName</key>
+	<string>usainua</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

@@ -30,5 +30,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.authReposytory.googleLogin(event.context);
       },
     );
+    on<SignInWithFbEvent>(
+      (event, emit) {
+        state.authReposytory.faceBookLogin(event.context);
+      },
+    );
   }
 }

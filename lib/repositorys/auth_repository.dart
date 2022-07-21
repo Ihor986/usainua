@@ -1,3 +1,4 @@
+import 'package:usainua/services/auth_service/sign_in_by_fb_service.dart';
 import 'package:usainua/services/auth_service/sign_in_by_google_service.dart';
 import 'package:usainua/services/auth_service/sign_in_by_phone_service.dart';
 
@@ -6,6 +7,7 @@ class AuthReposytory {
 
   final SignInByPhoneService _signInByPhoneService = SignInByPhoneService();
   final SignInByGoogleService _signInByGoogleService = SignInByGoogleService();
+  final SignInByFbService _signInByFbService = SignInByFbService();
 
   // Phone Auth
   void setPhoneNumberForVerification(String phoneNumber) {
@@ -23,5 +25,10 @@ class AuthReposytory {
   // google auth
   Future<void> googleLogin(context) async {
     await _signInByGoogleService.googleLogin(context);
+  }
+
+  // faceBook auth
+  Future<void> faceBookLogin(context) async {
+    await _signInByFbService.signInWithFacebook(context);
   }
 }

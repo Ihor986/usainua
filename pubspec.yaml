@@ -45,7 +45,7 @@ dependencies:
   bot_toast: ^4.0.3
   google_sign_in: ^5.4.0
   flutter_facebook_auth: ^3.5.0
-  # flutter_facebook_auth: ^4.3.4
+  # flutter_facebook_auth: 
 
 dev_dependencies:
   flutter_test:

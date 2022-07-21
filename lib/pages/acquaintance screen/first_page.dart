@@ -1,7 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:usainua/utils/app_colors.dart';
-import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
 
 class FirstPage extends StatelessWidget {
@@ -12,7 +11,8 @@ class FirstPage extends StatelessWidget {
   final Size screen;
   @override
   Widget build(BuildContext context) {
-   
+    // final _user = FirebaseAuth.instance.currentUser;
+    // print(_user);
     // pageController.jumpToPage(3);
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -40,7 +40,7 @@ class _Girl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 0.12 * screen.height),
+      padding: EdgeInsets.only(top: 0.12 * screen.height - 16),
       child: Image.asset(
         AppImages.girl,
         width: 0.88 * screen.width,
@@ -59,7 +59,7 @@ class _GirlBackgroun extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: -0.03 * screen.height,
+      top: -0.03 * screen.height - 16,
       left: -0.04 * screen.height,
       right: -0.04 * screen.height,
       child: ClipRRect(
@@ -152,4 +152,3 @@ class _GrayBlockText extends StatelessWidget {
     );
   }
 }
-

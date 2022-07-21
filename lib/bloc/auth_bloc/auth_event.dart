@@ -21,3 +21,8 @@ class SignInWithGoogleEvent extends AuthEvent {
   SignInWithGoogleEvent({required this.context});
   final BuildContext context;
 }
+
+class SignInWithFbEvent extends AuthEvent {
+  SignInWithFbEvent({required this.context});
+  final BuildContext context;
+}

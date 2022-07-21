@@ -23,6 +23,7 @@ class SignInByGoogleService {
       idToken: googleAuth.idToken,
     );
     try {
+      //
       await _auth.signInWithCredential(credential).then(
             (value) => Navigator.of(context, rootNavigator: true)
                 .pushNamedAndRemoveUntil(

@@ -3,37 +3,52 @@ import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_images.dart';
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key, }) : super(key: key);
+  const SecondPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Stack(
-        children: [
-          // _GrayBlock(screen: screen),
-          _GirlBackgroun(screen: screen),
-          _Girl(screen: screen),
-        ],
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.center,
+          colors: <Color>[
+            AppColors.white,
+            AppColors.grayBackground,
+          ], // Gradient from https://learnui.design/tools/gradient-generator.html
+          tileMode: TileMode.mirror,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Stack(
+          children: [
+            _WhiteBlock(screen: screen),
+            _GirlBackgroun(screen: screen),
+            _Action(screen: screen),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _Girl extends StatelessWidget {
-  const _Girl({
+class _Action extends StatelessWidget {
+  const _Action({
     Key? key,
     required this.screen,
   }) : super(key: key);
   final Size screen;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 0.12 * screen.height),
+    return Align(
+      alignment: const Alignment(0, -0.62),
       child: Image.asset(
-        AppImages.girl,
-        width: 0.88 * screen.width,
+        AppImages.nike,
+        width: 0.8 * screen.width,
       ),
     );
   }
@@ -64,8 +79,8 @@ class _GirlBackgroun extends StatelessWidget {
   }
 }
 
-class _GrayBlock extends StatelessWidget {
-  const _GrayBlock({
+class _WhiteBlock extends StatelessWidget {
+  const _WhiteBlock({
     Key? key,
     required this.screen,
   }) : super(key: key);
@@ -77,68 +92,68 @@ class _GrayBlock extends StatelessWidget {
       padding:
           EdgeInsets.only(left: 7, right: 7, top: 0.21 * screen.height - 16),
       child: Container(
-        height: 0.6 * screen.height,
+        height: 0.46 * screen.height,
         width: screen.width,
-        color: AppColors.grayBackground,
-        child: _GrayBlockText(screen: screen),
+        color: AppColors.white,
+        // child: _GrayBlockText(screen: screen),
       ),
     );
   }
 }
 
-class _GrayBlockText extends StatelessWidget {
-  const _GrayBlockText({
-    Key? key,
-    required this.screen,
-  }) : super(key: key);
-  final Size screen;
+// class _GrayBlockText extends StatelessWidget {
+//   const _GrayBlockText({
+//     Key? key,
+//     required this.screen,
+//   }) : super(key: key);
+//   final Size screen;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment : MainAxisAlignment.end,
-      children: [
-        Text(
-          'Покупка и доставка\nтоваров в США и Европе\nс нами легко',
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w800,
-            fontSize: screen.height*0.024,
-            letterSpacing: 0.5,
-          ),
-            softWrap: true, 
-            textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: screen.height * 0.032,
-        ),
-        Text(
-          'Нада сюди придумати пару строчок\nтексту просто привітального',
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontWeight: FontWeight.w700,
-            fontSize: screen.height*0.017,
-          ),
-            softWrap: true, 
-            textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: screen.height * 0.037,
-        ),
-        Text(
-          'USAIN.UA',
-          style: TextStyle(
-            color: AppColors.greenButtonColor,
-            fontWeight: FontWeight.w700,
-            fontSize: screen.height*0.017,
-          ),
-            softWrap: true, 
-            textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          height: screen.height * 0.042,
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       mainAxisAlignment: MainAxisAlignment.end,
+//       children: [
+//         Text(
+//           'Покупка и доставка\nтоваров в США и Европе\nс нами легко',
+//           style: TextStyle(
+//             color: AppColors.textColor,
+//             fontWeight: FontWeight.w800,
+//             fontSize: screen.height * 0.024,
+//             letterSpacing: 0.5,
+//           ),
+//           softWrap: true,
+//           textAlign: TextAlign.center,
+//         ),
+//         SizedBox(
+//           height: screen.height * 0.032,
+//         ),
+//         Text(
+//           'Нада сюди придумати пару строчок\nтексту просто привітального',
+//           style: TextStyle(
+//             color: AppColors.textColor,
+//             fontWeight: FontWeight.w700,
+//             fontSize: screen.height * 0.017,
+//           ),
+//           softWrap: true,
+//           textAlign: TextAlign.center,
+//         ),
+//         SizedBox(
+//           height: screen.height * 0.037,
+//         ),
+//         Text(
+//           'USAIN.UA',
+//           style: TextStyle(
+//             color: AppColors.greenButtonColor,
+//             fontWeight: FontWeight.w700,
+//             fontSize: screen.height * 0.017,
+//           ),
+//           softWrap: true,
+//           textAlign: TextAlign.center,
+//         ),
+//         SizedBox(
+//           height: screen.height * 0.042,
+//         ),
+//       ],
+//     );
+//   }
+// }

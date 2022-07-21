@@ -23,6 +23,7 @@ class SignInScreen extends StatelessWidget {
   //     GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
+    final Size screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.white,
       body: GestureDetector(
@@ -36,12 +37,12 @@ class SignInScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Stack(
-            children: const [
-              TextIncome(text: 'Вход'),
-              _IncomeForm(),
-              _RemindPassword(),
-              _SignUp(),
-              _MedisIncome(),
+            children: [
+              const TextIncome(text: 'Вход'),
+              _IncomeForm(screen: screen),
+              _RemindPassword(screen: screen),
+              _SignUp(screen: screen),
+              _MedisIncome(screen: screen),
             ],
           ),
         ),
@@ -52,7 +53,11 @@ class SignInScreen extends StatelessWidget {
 }
 
 class _IncomeForm extends StatefulWidget {
-  const _IncomeForm({Key? key}) : super(key: key);
+  const _IncomeForm({
+    Key? key,
+    required this.screen,
+  }) : super(key: key);
+  final Size screen;
 
   @override
   State<_IncomeForm> createState() => __IncomeFormState();
@@ -65,11 +70,10 @@ class __IncomeFormState extends State<_IncomeForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.only(top: screen.height * 0.23 - 16),
+          padding: EdgeInsets.only(top: widget.screen.height * 0.23 - 16),
           child: Column(
             children: [
               Form(
@@ -136,7 +140,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                                   },
                                   icon: SvgPicture.asset(
                                     AppIcons.yey,
-                                    width: screen.height * 0.0246,
+                                    width: widget.screen.height * 0.0246,
                                     color: AppColors.textColor,
                                   ),
                                 ),
@@ -152,7 +156,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                 ),
               ),
               SizedBox(
-                height: screen.height * 0.049,
+                height: widget.screen.height * 0.049,
               ),
               Padding(
                 padding: const EdgeInsets.all(5),
@@ -181,11 +185,14 @@ class __IncomeFormState extends State<_IncomeForm> {
 }
 
 class _RemindPassword extends StatelessWidget {
-  const _RemindPassword({Key? key}) : super(key: key);
+  const _RemindPassword({
+    Key? key,
+    required this.screen,
+  }) : super(key: key);
+  final Size screen;
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(top: screen.height * 0.56 - 16),
       child: ListTileButton(
@@ -201,11 +208,13 @@ class _RemindPassword extends StatelessWidget {
 }
 
 class _SignUp extends StatelessWidget {
-  const _SignUp({Key? key}) : super(key: key);
-
+  const _SignUp({
+    Key? key,
+    required this.screen,
+  }) : super(key: key);
+  final Size screen;
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(top: screen.height * 0.6 - 16),
       child: ListTileButton(
@@ -221,11 +230,14 @@ class _SignUp extends StatelessWidget {
 }
 
 class _MedisIncome extends StatelessWidget {
-  const _MedisIncome({Key? key}) : super(key: key);
+  const _MedisIncome({
+    Key? key,
+    required this.screen,
+  }) : super(key: key);
+  final Size screen;
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
     return Padding(
       padding:
           EdgeInsets.only(top: screen.height * 0.74 - 16, left: 5, right: 5),
