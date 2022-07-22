@@ -15,16 +15,29 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     on<VerifyPhoneNumberEvent>(
       (event, emit) {
-        state.authReposytory.setPhoneNumberForVerification(
-            state.authService.phoneInputController.text);
-        state.authReposytory.verifyPhoneNumber();
+        state.authReposytory.verifyPhoneNumber(
+          phoneNumber: state.authService.phoneInputController.text,
+          // emailAddress: state.authService.emailInputController.text,
+          // name: state.authService.nameInputController.text,
+        );
       },
     );
     on<SignUpEvent>(
       (event, emit) {
-        state.authReposytory.sendCodeToFirebase(event.context);
+        state.authReposytory.sendCodeToFirebase(
+          context: event.context,
+          smsCode: state.authService.getCode,
+          phoneNumber: state.authService.phoneInputController.text,
+          emailAddress: state.authService.emailInputController.text,
+          name: state.authService.nameInputController.text,
+        );
       },
     );
+    // on<SignInEvent>(
+    //   (event, emit) {
+    //     state.authReposytory.sendCodeToFirebase(event.context);
+    //   },
+    // );
     on<SignInWithGoogleEvent>(
       (event, emit) {
         state.authReposytory.googleLogin(event.context);

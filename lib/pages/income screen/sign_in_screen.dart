@@ -41,7 +41,7 @@ class SignInScreen extends StatelessWidget {
               const TextIncome(text: 'Вход'),
               _IncomeForm(screen: screen),
               _RemindPassword(screen: screen),
-              _SignUp(screen: screen),
+              // _SignUp(screen: screen),
               _MedisIncome(screen: screen),
             ],
           ),
@@ -194,40 +194,48 @@ class _RemindPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.56 - 16),
-      child: ListTileButton(
-        text: 'Напомнить пароль',
-        icon: AppIcons.lock,
-        onTap: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RemindPasswordScreen.routeName, (route) => false);
-        },
+      padding: EdgeInsets.only(top: screen.height * 0.55 - 16),
+      child: Column(
+        children: [
+          ListTileButton(
+            text: 'Напомнить пароль',
+            icon: AppIcons.lock,
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, RemindPasswordScreen.routeName, (route) => false);
+            },
+          ),
+          SizedBox(
+            height: screen.height * 0.02,
+          ),
+          ListTileButton(
+            text: 'Зарегистрироваться',
+            icon: AppIcons.profilePlus,
+            onTap: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, SignUpScreen.routeName, (route) => false);
+            },
+          ),
+        ],
       ),
     );
   }
 }
 
-class _SignUp extends StatelessWidget {
-  const _SignUp({
-    Key? key,
-    required this.screen,
-  }) : super(key: key);
-  final Size screen;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.6 - 16),
-      child: ListTileButton(
-        text: 'Зарегистрироваться',
-        icon: AppIcons.profilePlus,
-        onTap: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, SignUpScreen.routeName, (route) => false);
-        },
-      ),
-    );
-  }
-}
+// class _SignUp extends StatelessWidget {
+//   const _SignUp({
+//     Key? key,
+//     required this.screen,
+//   }) : super(key: key);
+//   final Size screen;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: EdgeInsets.only(top: screen.height * 0.61 - 16),
+//       child:
+//     );
+//   }
+// }
 
 class _MedisIncome extends StatelessWidget {
   const _MedisIncome({

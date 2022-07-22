@@ -16,9 +16,9 @@ class ListTileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
-    return ListTile(
+    return GestureDetector(
       onTap: onTap,
-      title: Row(children: [
+      child: Row(children: [
         SvgPicture.asset(
           icon,
           color: AppColors.blueIconsColor,

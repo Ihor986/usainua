@@ -11,9 +11,9 @@ import 'package:usainua/widgets/income%20screen/code_confirmations_widget.dart';
 // import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
 // import 'package:usainua/widgets/income%20screen/text_income.dart';
 
-class CodeConfirmationsScreen extends StatelessWidget {
-  const CodeConfirmationsScreen({Key? key}) : super(key: key);
-  static const routeName = '/CodeConfirmationsScreen';
+class SignInConfirmationsScreen extends StatelessWidget {
+  const SignInConfirmationsScreen({Key? key}) : super(key: key);
+  static const routeName = '/SignInConfirmationsScreen';
   // static final GlobalKey<NavigatorState> _navigatorKey =
   //     GlobalKey<NavigatorState>();
   @override

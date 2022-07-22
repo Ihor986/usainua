@@ -14,14 +14,16 @@ class SignInByGoogleService {
   // GoogleSignInAccount? get user => _user;
 
   Future<void> googleLogin(BuildContext context) async {
-    final googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) return;
     // _user = googleUser;
-    final googleAuth = await googleUser.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      // accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
     try {
       //
       await _auth.signInWithCredential(credential).then(
@@ -32,7 +34,21 @@ class SignInByGoogleService {
             ),
           );
     } catch (e) {
-      BotToast.showText(text: e.toString());
+      try {
+        if (_auth.currentUser == null) {
+          BotToast.showText(text: e.toString());
+          return;
+        }
+        await _auth.currentUser?.linkWithCredential(credential).then(
+              (value) => Navigator.of(context, rootNavigator: true)
+                  .pushNamedAndRemoveUntil(
+                AcquaintanceScreen.routeName,
+                (_) => false,
+              ),
+            );
+      } on FirebaseAuthException catch (e) {
+        BotToast.showText(text: e.code);
+      }
     }
   }
 }

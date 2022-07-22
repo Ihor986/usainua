@@ -1,9 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class AuthService {
   // AuthService._();
   // static const
   final TextEditingController phoneInputController = TextEditingController();
+  final TextEditingController nameInputController = TextEditingController();
+  final TextEditingController emailInputController = TextEditingController();
+  // final TextEditingController codeController = TextEditingController();
+  String? _codeController;
+
+  String? get getCode => _codeController;
+
+  void setCode(String value) {
+    _codeController == null
+        ? _codeController = value
+        : _codeController = _codeController! + value;
+  }
+
   void changePhoneValue(String value) {
     if (value.length == 1) {
       bool isWrongValue =

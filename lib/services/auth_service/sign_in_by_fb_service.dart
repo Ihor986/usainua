@@ -9,6 +9,48 @@ class SignInByFbService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   // AccessToken? _accessToken;
 
+  Future<void> signInWithFacebook(context) async {
+    // await _auth.signOut();
+
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    if (loginResult.accessToken == null) return;
+    final OAuthCredential credential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    try {
+      await _auth.signInWithCredential(credential).then(
+            (value) => Navigator.of(context, rootNavigator: true)
+                .pushNamedAndRemoveUntil(
+              AcquaintanceScreen.routeName,
+              (_) => false,
+            ),
+          );
+    } catch (e) {
+      try {
+        if (_auth.currentUser == null) {
+          // await _auth.signInWithAuthProvider(GoogleAuthProvider());
+          BotToast.showText(text: e.toString());
+          return;
+        }
+
+        await _auth.currentUser?.linkWithCredential(credential).then(
+              (value) => Navigator.of(context, rootNavigator: true)
+                  .pushNamedAndRemoveUntil(
+                AcquaintanceScreen.routeName,
+                (_) => false,
+              ),
+            );
+      } on FirebaseAuthException catch (e) {
+        BotToast.showText(text: e.code);
+      }
+    }
+  }
+
+  // Future<void> signOuth() async {
+  //   await FirebaseAuth.instance.currentUser?.unlink("google.com");
+  //   await _auth.signOut();
+  // }
+
   // Future<void> signInWithFacebook(context) async {
   //   // await FacebookAuth.i.logOut();
   //   final LoginResult result = await FacebookAuth.i.login();
@@ -22,33 +64,6 @@ class SignInByFbService {
   //     print(data);
   //   }
   // }
-
-  Future<void> signInWithFacebook(context) async {
-    await _auth.signOut();
-    // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-
-    // Create a credential from the access token
-
-    // Once signed in, return the UserCredential
-    // return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-
-    try {
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      facebookAuthCredential;
-      await _auth.signInWithCredential(facebookAuthCredential).then(
-            (value) => Navigator.of(context, rootNavigator: true)
-                .pushNamedAndRemoveUntil(
-              AcquaintanceScreen.routeName,
-              (_) => false,
-            ),
-          );
-    } catch (e) {
-      BotToast.showText(text: e.toString());
-      print(e.toString());
-    }
-  }
 
   // Future<void> signOuth() async {
   //   await FacebookAuth.i.logOut();

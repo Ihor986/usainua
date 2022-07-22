@@ -30,8 +30,8 @@ class SignUpScreen extends StatelessWidget {
         },
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Stack(
-            // alignment: AlignmentDirectional.center,
+          child: Wrap(
+            runSpacing: 5,
             children: [
               const TextIncome(text: 'Регистрация'),
               _SignUpForm(screen: screen),
@@ -63,13 +63,8 @@ class _SignUpFormState extends State<_SignUpForm> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
-        return Align(
-          alignment: const Alignment(0, -0.14),
-          // padding: EdgeInsets.only(top: widget.screen.height * 0.23 - 16),
-          // child:
-          // SizedBox(
-          //   height: widget.screen.height * 0.5,
-          // child: SingleChildScrollView(
+        return Padding(
+          padding: EdgeInsets.only(top: widget.screen.height * 0.03),
           child: Column(
             children: [
               Form(
@@ -78,94 +73,107 @@ class _SignUpFormState extends State<_SignUpForm> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return 'Укажите Ваше имя';
-                          // }
-                          return null;
-                        },
-                        decoration: const InputDecoration(
-                          hintText: 'Ваше имя*',
-                          hintStyle: TextStyle(
-                            color: AppColors.disactiveTextColor,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16.0),
+                      child: SizedBox(
+                        height: 56,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Укажите Ваше имя';
+                            }
+                            return null;
+                          },
+                          controller: state.authService.nameInputController,
+                          decoration: const InputDecoration(
+                            hintText: 'Ваше имя*',
+                            hintStyle: TextStyle(
+                              color: AppColors.disactiveTextColor,
                             ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16.0),
+                              ),
+                            ),
+                            fillColor: AppColors.grayBackground,
+                            filled: true,
                           ),
-                          fillColor: AppColors.grayBackground,
-                          filled: true,
-                        ),
-                        // keyboardType: TextInputType.phone,
-                        style: const TextStyle(
-                          color: AppColors.textColor,
+                          // keyboardType: TextInputType.phone,
+                          style: const TextStyle(
+                            color: AppColors.textColor,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return 'Укажите Ваш email';
-                          // }
-                          return null;
-                        },
-                        decoration: const InputDecoration(
-                          hintText: 'Ваш email*',
-                          hintStyle: TextStyle(
-                            color: AppColors.disactiveTextColor,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16.0),
+                      child: SizedBox(
+                        height: 56,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null ||
+                                value.length < 3 ||
+                                !value.contains('@')) {
+                              return 'Укажите Ваш email';
+                            }
+                            return null;
+                          },
+                          controller: state.authService.emailInputController,
+                          decoration: const InputDecoration(
+                            hintText: 'Ваш email*',
+                            hintStyle: TextStyle(
+                              color: AppColors.disactiveTextColor,
                             ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16.0),
+                              ),
+                            ),
+                            fillColor: AppColors.grayBackground,
+                            filled: true,
                           ),
-                          fillColor: AppColors.grayBackground,
-                          filled: true,
-                        ),
-                        // keyboardType: TextInputType.phone,
-                        style: const TextStyle(
-                          color: AppColors.textColor,
+                          // keyboardType: TextInputType.phone,
+                          style: const TextStyle(
+                            color: AppColors.textColor,
+                          ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.length != 13) {
-                            return 'Укажите Ваш Номер телефона';
-                          }
-                          return null;
-                        },
-                        controller: state.authService.phoneInputController,
-                        decoration: const InputDecoration(
-                          hintText: 'Ваш Номер телефона*',
-                          hintStyle: TextStyle(
-                            color: AppColors.disactiveTextColor,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16.0),
+                      child: SizedBox(
+                        height: 56,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.length != 13) {
+                              return 'Укажите Ваш Номер телефона';
+                            }
+                            return null;
+                          },
+                          controller: state.authService.phoneInputController,
+                          decoration: const InputDecoration(
+                            hintText: 'Ваш Номер телефона*',
+                            hintStyle: TextStyle(
+                              color: AppColors.disactiveTextColor,
                             ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16.0),
+                              ),
+                            ),
+                            fillColor: AppColors.grayBackground,
+                            filled: true,
                           ),
-                          fillColor: AppColors.grayBackground,
-                          filled: true,
-                        ),
-                        keyboardType: TextInputType.phone,
-                        onChanged: (value) {
-                          context
-                              .read<AuthBloc>()
-                              .add(OnChangePhoneEvent(value: value));
-                        },
-                        style: const TextStyle(
-                          color: AppColors.textColor,
+                          keyboardType: TextInputType.phone,
+                          onChanged: (value) {
+                            context
+                                .read<AuthBloc>()
+                                .add(OnChangePhoneEvent(value: value));
+                          },
+                          style: const TextStyle(
+                            color: AppColors.textColor,
+                          ),
                         ),
                       ),
                     ),
@@ -225,9 +233,9 @@ class _SignUpFormState extends State<_SignUpForm> {
                 ),
               ),
             ],
+            // ),
+            // ),
           ),
-          //   ),
-          // ),
         );
       },
     );
@@ -242,9 +250,9 @@ class _Registered extends StatelessWidget {
   final Size screen;
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: const Alignment(0, 0.44),
-      // padding: EdgeInsets.only(top: screen.height * 0.7 - 16),
+    return Padding(
+      //   alignment: const Alignment(0, 0.44),
+      padding: EdgeInsets.only(top: screen.height * 0.02),
       child: ListTileButton(
         text: 'Я уже зарегистрирован',
         icon: AppIcons.password,
@@ -265,11 +273,11 @@ class _MedisIncome extends StatelessWidget {
   final Size screen;
   @override
   Widget build(BuildContext context) {
-    return const Align(
-      alignment: Alignment(0, 0.8),
-      // padding:
-      //     EdgeInsets.only(top: screen.height * 0.79 - 16, left: 5, right: 5),
-      child: MedisIncome(),
+    return Padding(
+      //   alignment: Alignment(0, 0.8),
+      padding:
+          EdgeInsets.only(top: screen.height * 0.06 - 16, left: 5, right: 5),
+      child: const MedisIncome(),
     );
   }
 }
