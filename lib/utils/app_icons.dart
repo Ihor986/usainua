@@ -6,17 +6,16 @@ class AppIcons {
   static const String profilePlus = 'assets/icons/addUser.svg';
   static const String password = 'assets/icons/Password.svg';
   static const String pageViewIndicator = 'assets/icons/pageViewIndicator.svg';
-  // static const String arrowDown = 'assets/icons/arrow_down.svg';
-  // static const String repeat = 'assets/icons/repeat.svg';
-  // static const String pauseAll = 'assets/icons/pauseAll.svg';
-  // static const String wallet = 'assets/icons/wallet.svg';
-  // static const String support = 'assets/icons/support.svg';
-  // static const String drawer = 'assets/icons/drawer.svg';
-  // static const String moreHorizontRounded =
-  //     'assets/icons/moreHorizontRounded.svg';
-  // static const String vector = 'assets/icons/vector.svg';
-  // static const String downloadIcon = 'assets/icons/downloadIcon.svg';
-  // static const String cloud = 'assets/icons/cloud.svg';
+  static const String arrowLeft = 'assets/icons/arrowLeft.svg';
+  static const String arrowRight = 'assets/icons/arrowRight.svg';
+  static const String greenCheck = 'assets/icons/greenCheck.svg';
+  static const String snake = 'assets/icons/snake.svg';
+  static const String buy = 'assets/icons/Buy.svg';
+  static const String moneyBag = 'assets/icons/money-bag.svg';
+  static const String location = 'assets/icons/location.svg';
+  static const String copy = 'assets/icons/copy.svg';
+  static const String copyLocation = 'assets/icons/copyLocation.svg';
+  static const String edit = 'assets/icons/Edit.svg';
   // static const String check = 'assets/icons/check.svg';
   // static const String uncheck = 'assets/icons/uncheck.svg';
   // static const String playSVG = 'assets/icons/play.svg';
