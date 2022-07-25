@@ -26,24 +26,28 @@ class SignInScreen extends StatelessWidget {
     final Size screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: GestureDetector(
-        onTap: () {
-          if (FocusNode().hasFocus) {
-            FocusScope.of(context).unfocus();
-          } else {
-            FocusScope.of(context).requestFocus(FocusNode());
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Stack(
-            children: [
-              const TextIncome(text: 'Вход'),
-              _IncomeForm(screen: screen),
-              _RemindPassword(screen: screen),
-              // _SignUp(screen: screen),
-              _MedisIncome(screen: screen),
-            ],
+      body: SingleChildScrollView(
+        reverse: true,
+        // physics: const NeverScrollableScrollPhysics(),
+        child: GestureDetector(
+          onTap: () {
+            if (FocusNode().hasFocus) {
+              FocusScope.of(context).unfocus();
+            } else {
+              FocusScope.of(context).requestFocus(FocusNode());
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Stack(
+              children: [
+                const TextIncome(text: 'Вход'),
+                _IncomeForm(screen: screen),
+                // _ListTileButtons(screen: screen),
+                // _SignUp(screen: screen),
+                _MedisIncome(screen: screen),
+              ],
+            ),
           ),
         ),
       ),
@@ -179,6 +183,7 @@ class __IncomeFormState extends State<_IncomeForm> {
                   },
                 ),
               ),
+              _ListTileButtons(screen: widget.screen),
             ],
           ),
         );
@@ -187,8 +192,8 @@ class __IncomeFormState extends State<_IncomeForm> {
   }
 }
 
-class _RemindPassword extends StatelessWidget {
-  const _RemindPassword({
+class _ListTileButtons extends StatelessWidget {
+  const _ListTileButtons({
     Key? key,
     required this.screen,
   }) : super(key: key);
@@ -197,7 +202,7 @@ class _RemindPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.55 - 16),
+      padding: EdgeInsets.only(top: screen.height * 0.03),
       child: Column(
         children: [
           ListTileButton(

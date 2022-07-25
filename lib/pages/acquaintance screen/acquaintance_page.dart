@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:usainua/pages/acquaintance%20screen/fifth_page.dart';
 import 'package:usainua/pages/acquaintance%20screen/first_page.dart';
 import 'package:usainua/pages/acquaintance%20screen/fourth_page.dart';
 import 'package:usainua/pages/acquaintance%20screen/second_page.dart';
@@ -48,7 +49,7 @@ class _MyWidgetState extends State<_MyWidget> {
             SecondPage(screen: screen),
             ThirdPage(screen: screen),
             FourthPage(screen: screen),
-            SecondPage(screen: screen),
+            FifthPage(screen: screen),
           ],
         ),
         page < 4

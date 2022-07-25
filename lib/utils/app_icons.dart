@@ -10,6 +10,7 @@ class AppIcons {
   static const String arrowRight = 'assets/icons/arrowRight.svg';
   static const String greenCheck = 'assets/icons/greenCheck.svg';
   static const String snake = 'assets/icons/snake.svg';
+  static const String snakePng = 'assets/icons/snakePng.png';
   static const String buy = 'assets/icons/Buy.svg';
   static const String moneyBag = 'assets/icons/money-bag.svg';
   static const String location = 'assets/icons/location.svg';

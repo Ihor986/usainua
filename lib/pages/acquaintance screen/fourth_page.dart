@@ -24,9 +24,9 @@ class _FourthPageState extends State<FourthPage> {
       child: Stack(
         children: [
           Align(
-            alignment: const Alignment(0, -0.74),
+            alignment: const Alignment(0, -0.77),
             child: SizedBox(
-              height: widget.screen.height * 0.15,
+              height: 120,
               child: Column(
                 children: [
                   _ButtonRow(
@@ -39,6 +39,9 @@ class _FourthPageState extends State<FourthPage> {
                     text: 'Покупка и доставка',
                     screen: widget.screen,
                     isCheced: !isOnlyDelivery,
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   _ButtonRow(
                     color: AppColors.blueIconsColor,
@@ -109,50 +112,54 @@ class _ButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+    return GestureDetector(
       onTap: onClick,
-      title: Row(
-        children: [
-          Stack(
-            children: [
-              Container(
-                padding: EdgeInsets.all(screen.height * 0.01),
-                width: screen.height * 0.04,
-                height: screen.height * 0.04,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(
-                        50.0), //                 <--- border radius here
-                  ),
-                  color: isCheced ? color : AppColors.grayBackground,
-                ),
-                child: Container(
-                  width: screen.height * 0.02,
-                  height: screen.height * 0.02,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Row(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(screen.height * 0.01),
+                  width: screen.height * 0.04,
+                  height: screen.height * 0.04,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(
                           50.0), //                 <--- border radius here
                     ),
-                    color: AppColors.grayBackground,
+                    color: isCheced ? color : AppColors.grayBackground,
+                  ),
+                  child: Container(
+                    width: screen.height * 0.02,
+                    height: screen.height * 0.02,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(
+                            50.0), //                 <--- border radius here
+                      ),
+                      color: AppColors.grayBackground,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            text,
-            style: TextStyle(
-              color: isCheced ? AppColors.textColor : AppColors.grayBackground,
-              fontSize: screen.height * 0.024,
-              fontWeight: FontWeight.w800,
-              letterSpacing: 0.5,
+              ],
             ),
-          ),
-        ],
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                color:
+                    isCheced ? AppColors.textColor : AppColors.grayBackground,
+                fontSize: screen.height * 0.024,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.5,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -202,18 +209,6 @@ class _DeliveryTypeContainer extends StatelessWidget {
                 ),
                 _LineRow(
                   color: color,
-                  text: text2,
-                  icon: icon2,
-                  screen: screen,
-                ),
-                _LineRow(
-                  color: color,
-                  text: text3,
-                  icon: icon3,
-                  screen: screen,
-                ),
-                _LineRow(
-                  color: color,
                   text: text4,
                   icon: icon4,
                   screen: screen,
@@ -222,8 +217,38 @@ class _DeliveryTypeContainer extends StatelessWidget {
             ),
             Center(
               child: SizedBox(
+                height: 0.25 * screen.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _LineRow(
+                      color: color,
+                      text: text2,
+                      icon: icon2,
+                      screen: screen,
+                    ),
+                    _LineRow(
+                      color: color,
+                      text: text3,
+                      icon: icon3,
+                      screen: screen,
+                    ),
+                    const SizedBox(),
+                  ],
+                ),
+              ),
+            ),
+            Center(
+              child: Container(
+                foregroundDecoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(
+                      AppIcons.snakePng,
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                ),
                 height: 0.33 * screen.height,
-                child: SvgPicture.asset(AppIcons.snake),
               ),
             ),
           ],

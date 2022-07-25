@@ -20,24 +20,26 @@ class SignUpScreen extends StatelessWidget {
     final Size screen = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.white,
-      body: GestureDetector(
-        onTap: () {
-          if (FocusNode().hasFocus) {
-            FocusScope.of(context).unfocus();
-          } else {
-            FocusScope.of(context).requestFocus(FocusNode());
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Wrap(
-            runSpacing: 5,
-            children: [
-              const TextIncome(text: 'Регистрация'),
-              _SignUpForm(screen: screen),
-              _Registered(screen: screen),
-              _MedisIncome(screen: screen),
-            ],
+      body: SingleChildScrollView(
+        child: GestureDetector(
+          onTap: () {
+            if (FocusNode().hasFocus) {
+              FocusScope.of(context).unfocus();
+            } else {
+              FocusScope.of(context).requestFocus(FocusNode());
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Wrap(
+              runSpacing: 5,
+              children: [
+                const TextIncome(text: 'Регистрация'),
+                _SignUpForm(screen: screen),
+                _Registered(screen: screen),
+                _MedisIncome(screen: screen),
+              ],
+            ),
           ),
         ),
       ),
