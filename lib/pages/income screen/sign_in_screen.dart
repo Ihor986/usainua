@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                 _IncomeForm(screen: screen),
                 // _ListTileButtons(screen: screen),
                 // _SignUp(screen: screen),
-                _MedisIncome(screen: screen),
+                // _MedisIncome(screen: screen),
               ],
             ),
           ),
@@ -87,76 +87,83 @@ class __IncomeFormState extends State<_IncomeForm> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(5),
-                      child: TextFormField(
-                        controller: state.authService.phoneInputController,
-                        decoration: const InputDecoration(
-                          hintText: 'Ваш Номер телефона*',
-                          hintStyle: TextStyle(
-                            color: AppColors.disactiveTextColor,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16.0),
+                      child: SizedBox(
+                        height: 56,
+                        child: TextFormField(
+                          controller: state.authService.phoneInputController,
+                          decoration: const InputDecoration(
+                            hintText: 'Ваш Номер телефона*',
+                            hintStyle: TextStyle(
+                              color: AppColors.disactiveTextColor,
                             ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16.0),
+                              ),
+                            ),
+                            fillColor: AppColors.grayBackground,
+                            filled: true,
                           ),
-                          fillColor: AppColors.grayBackground,
-                          filled: true,
+                          keyboardType: TextInputType.phone,
+                          onChanged: (value) {
+                            context
+                                .read<AuthBloc>()
+                                .add(OnChangePhoneEvent(value: value));
+                          },
+                          style: const TextStyle(
+                            color: AppColors.textColor,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.length != 13) {
+                              return 'Укажите Ваш Номер телефона';
+                            }
+                            return null;
+                          },
                         ),
-                        keyboardType: TextInputType.phone,
-                        onChanged: (value) {
-                          context
-                              .read<AuthBloc>()
-                              .add(OnChangePhoneEvent(value: value));
-                        },
-                        style: const TextStyle(
-                          color: AppColors.textColor,
-                        ),
-                        validator: (value) {
-                          if (value == null || value.length != 13) {
-                            return 'Укажите Ваш Номер телефона';
-                          }
-                          return null;
-                        },
                       ),
                     ),
-                    _user != null
-                        ? Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                hintText: 'Ваш пороль*',
-                                hintStyle: const TextStyle(
-                                  color: AppColors.disactiveTextColor,
-                                ),
-                                border: const OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(16.0),
-                                  ),
-                                ),
-                                fillColor: AppColors.grayBackground,
-                                filled: true,
-                                suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _isSecure = !_isSecure;
-                                    });
-                                  },
-                                  icon: SvgPicture.asset(
-                                    AppIcons.yey,
-                                    width: widget.screen.height * 0.0246,
-                                    color: AppColors.textColor,
-                                  ),
-                                ),
+                    // _user != null
+                    //     ?
+                    Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: SizedBox(
+                        height: 56,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: 'Ваш пороль*',
+                            hintStyle: const TextStyle(
+                              color: AppColors.disactiveTextColor,
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16.0),
                               ),
-                              obscureText: _isSecure,
-                              style: const TextStyle(
+                            ),
+                            fillColor: AppColors.grayBackground,
+                            filled: true,
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _isSecure = !_isSecure;
+                                });
+                              },
+                              icon: SvgPicture.asset(
+                                AppIcons.yey,
+                                width: widget.screen.height * 0.0246,
                                 color: AppColors.textColor,
                               ),
                             ),
-                          )
-                        : const SizedBox(),
+                          ),
+                          obscureText: _isSecure,
+                          style: const TextStyle(
+                            color: AppColors.textColor,
+                          ),
+                        ),
+                      ),
+                    )
+                    // : const SizedBox(),
                   ],
                 ),
               ),
@@ -230,26 +237,14 @@ class _ListTileButtons extends StatelessWidget {
                   context, SignUpScreen.routeName, (route) => false);
             },
           ),
+          _MedisIncome(
+            screen: screen,
+          )
         ],
       ),
     );
   }
 }
-
-// class _SignUp extends StatelessWidget {
-//   const _SignUp({
-//     Key? key,
-//     required this.screen,
-//   }) : super(key: key);
-//   final Size screen;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.only(top: screen.height * 0.61 - 16),
-//       child:
-//     );
-//   }
-// }
 
 class _MedisIncome extends StatelessWidget {
   const _MedisIncome({
@@ -261,8 +256,7 @@ class _MedisIncome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-          EdgeInsets.only(top: screen.height * 0.74 - 16, left: 5, right: 5),
+      padding: EdgeInsets.only(top: screen.height * 0.1, left: 5, right: 5),
       child: const MedisIncome(),
     );
   }

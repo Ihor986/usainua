@@ -22,6 +22,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
   ]);
   // await FirebaseAuth.instance.signOut();
+  // print(FirebaseAuth.instance.currentUser.toString());
   runApp(const MyApp());
 }
 

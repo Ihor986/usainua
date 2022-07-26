@@ -41,13 +41,13 @@ class SignInByPhoneService {
             verificationId: _verificationCode!, smsCode: smsCode);
         await _auth.signInWithCredential(credential);
 
-        if (_auth.currentUser?.emailVerified == true) {
-          navigator.pushNamedAndRemoveUntil(
-            AcquaintanceScreen.routeName,
-            (_) => false,
-          );
-          return;
-        }
+        // if (_auth.currentUser?.emailVerified == true) {
+        //   navigator.pushNamedAndRemoveUntil(
+        //     AcquaintanceScreen.routeName,
+        //     (_) => false,
+        //   );
+        //   return;
+        // }
         if (_auth.currentUser?.email == null) {
           BotToast.showText(text: registrationText);
           await _auth.currentUser?.delete();
@@ -57,8 +57,12 @@ class SignInByPhoneService {
           );
           return;
         }
-        await _auth.signOut();
-        BotToast.showText(text: emailVerify);
+        navigator.pushNamedAndRemoveUntil(
+          AcquaintanceScreen.routeName,
+          (_) => false,
+        );
+        // await _auth.signOut();
+        // BotToast.showText(text: emailVerify);
       }
     } catch (e) {
       BotToast.showText(text: e.toString());

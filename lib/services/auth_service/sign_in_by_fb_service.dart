@@ -1,8 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
+import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 
 class SignInByFbService {
   SignInByFbService();
@@ -15,52 +18,56 @@ class SignInByFbService {
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     try {
-      await _auth.signInWithCredential(credential);
-      navigator.pushNamedAndRemoveUntil(
-        AcquaintanceScreen.routeName,
-        (_) => false,
-      );
+      var i = await _auth.signInWithCredential(credential);
+      // print(i.user?.providerData.elementAt(0).email);
+      final ref = FirebaseFirestore.instance
+          .collection(i.user?.providerData.elementAt(0).email ?? '')
+          .doc('authUser')
+          .withConverter(
+            fromFirestore: UserAuth.fromFirestore,
+            toFirestore: (UserAuth localUserFromFirestore, _) =>
+                localUserFromFirestore.toMap(),
+          );
+      final docSnap = await ref.get();
+      final localUserFromFirestore = docSnap.data();
+      if (localUserFromFirestore != null) {
+        navigator.pushNamedAndRemoveUntil(
+          AcquaintanceScreen.routeName,
+          (_) => false,
+        );
+      } else {
+        await _auth.currentUser?.delete();
+        const String registrationText =
+            'Чтобы пользоваться приложением, Вам \nнеобходимо зарегистрироваться';
+        BotToast.showText(
+          text: registrationText,
+          duration: const Duration(seconds: 5),
+        );
+        navigator.pushNamedAndRemoveUntil(
+          SignUpScreen.routeName,
+          (_) => false,
+        );
+      }
     } catch (e) {
+      await _auth.currentUser?.delete();
       BotToast.showText(text: e.toString());
-      // try {
-      //   if (_auth.currentUser == null) {
-      //     // await _auth.signInWithAuthProvider(GoogleAuthProvider());
-      //     BotToast.showText(text: e.toString());
-      //     return;
-      //   }
-
-      //   await _auth.currentUser?.linkWithCredential(credential).then(
-      //         (value) => Navigator.of(context, rootNavigator: true)
-      //             .pushNamedAndRemoveUntil(
-      //           AcquaintanceScreen.routeName,
-      //           (_) => false,
-      //         ),
-      //       );
-      // } on FirebaseAuthException catch (e) {
-      //   BotToast.showText(text: e.code);
-      // }
     }
   }
 
-  // Future<void> signOuth() async {
-  //   await FirebaseAuth.instance.currentUser?.unlink("google.com");
-  //   await _auth.signOut();
-  // }
-
-  // Future<void> signInWithFacebook(context) async {
+  // Future<void> _getData() async {
   //   // await FacebookAuth.i.logOut();
   //   final LoginResult result = await FacebookAuth.i.login();
   //   if (result.status == LoginStatus.success) {
   //     // _accessToken = result.accessToken;
-  //     Navigator.of(context, rootNavigator: true).pushNamedAndRemoveUntil(
-  //       AcquaintanceScreen.routeName,
-  //       (_) => false,
-  //     );
+  //     // navigator.pushNamedAndRemoveUntil(
+  //     //   AcquaintanceScreen.routeName,
+  //     //   (_) => false,
+  //     // );
   //     final Map<String, dynamic> data = await FacebookAuth.i.getUserData();
+  //     // return data;
   //     print(data);
   //   }
   // }
-
   // Future<void> signOuth() async {
   //   await FacebookAuth.i.logOut();
   //   // _accessToken =null;

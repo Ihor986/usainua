@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
+import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 
 class SignUpByPhoneService {
   SignUpByPhoneService();
@@ -41,6 +42,7 @@ class SignUpByPhoneService {
     try {
       if (_verificationCode != null && smsCode.length == 6) {
         await _createUser(
+          navigator: navigator,
           emailAddress: emailAddress,
           password: phoneNumberForVerification + name,
         );
@@ -51,8 +53,9 @@ class SignUpByPhoneService {
         );
         if (_auth.currentUser == null) return;
         await _auth.currentUser!.updatePhoneNumber(credential);
-        _createUserData(
-          emailAddress: emailAddress,
+        await _createUserData(
+          navigator: navigator,
+          emailAddress: _auth.currentUser!.email,
           name: name,
           password: phoneNumberForVerification + name,
           phone: phoneNumberForVerification,
@@ -62,12 +65,23 @@ class SignUpByPhoneService {
           (_) => false,
         );
       }
+    } on FirebaseAuthException catch (e) {
+      BotToast.showText(text: e.message.toString());
+      navigator.pushNamedAndRemoveUntil(
+        SignUpScreen.routeName,
+        (_) => false,
+      );
     } catch (e) {
+      navigator.pushNamedAndRemoveUntil(
+        SignUpScreen.routeName,
+        (_) => false,
+      );
       BotToast.showText(text: e.toString());
     }
   }
 
   Future<void> _createUser({
+    required NavigatorState navigator,
     required String emailAddress,
     required String password,
   }) async {
@@ -78,13 +92,21 @@ class SignUpByPhoneService {
       );
       await _auth.setLanguageCode('ru');
       await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      navigator.pushNamedAndRemoveUntil(
+        SignUpScreen.routeName,
+        (_) => false,
+      );
+      BotToast.showText(text: e.message.toString());
     } catch (e) {
+      // print(e);
       BotToast.showText(text: e.toString());
     }
   }
 
   Future<void> _createUserData({
-    required String emailAddress,
+    required NavigatorState navigator,
+    required String? emailAddress,
     required String password,
     required String name,
     required String phone,
@@ -99,11 +121,16 @@ class SignUpByPhoneService {
         isEmailVerify: _auth.currentUser?.emailVerified,
       );
       await FirebaseFirestore.instance
-          .collection(emailAddress)
+          .collection(emailAddress ?? phone)
           .doc('authUser')
           .set(user.toMap());
     } catch (e) {
+      navigator.pushNamedAndRemoveUntil(
+        SignUpScreen.routeName,
+        (_) => false,
+      );
       BotToast.showText(text: e.toString());
+      // print(e);
     }
   }
 }

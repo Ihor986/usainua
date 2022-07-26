@@ -24,7 +24,7 @@ class RemindPasswordScreen extends StatelessWidget {
             _HintText(),
             _LoginInput(),
             _RemindPasswordButton(),
-            _RememberedPasswordButton(),
+            // _RememberedPasswordButton(),
           ],
         ),
       ),
@@ -57,24 +57,27 @@ class _LoginInput extends StatelessWidget {
     return Padding(
       padding:
           EdgeInsets.only(top: screen.height * 0.3 - 16, left: 5, right: 5),
-      child: TextFormField(
-        decoration: const InputDecoration(
-          hintText: 'Ваш email или телефон',
-          hintStyle: TextStyle(
-            color: AppColors.disactiveTextColor,
-          ),
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16.0),
+      child: SizedBox(
+        height: 56,
+        child: TextFormField(
+          decoration: const InputDecoration(
+            hintText: 'Ваш email или телефон',
+            hintStyle: TextStyle(
+              color: AppColors.disactiveTextColor,
             ),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(
+                Radius.circular(16.0),
+              ),
+            ),
+            fillColor: AppColors.grayBackground,
+            filled: true,
           ),
-          fillColor: AppColors.grayBackground,
-          filled: true,
-        ),
-        keyboardType: TextInputType.phone,
-        style: const TextStyle(
-          color: AppColors.textColor,
+          keyboardType: TextInputType.phone,
+          style: const TextStyle(
+            color: AppColors.textColor,
+          ),
         ),
       ),
     );
@@ -90,12 +93,20 @@ class _RemindPasswordButton extends StatelessWidget {
     return Padding(
       padding:
           EdgeInsets.only(top: screen.height * 0.43 - 16, left: 5, right: 5),
-      child: GreenButton(
-        text: 'НАПОМНИТЬ ПАРОЛЬ',
-        onPressed: () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, PasswordHasBeenSentScreen.routeName, (route) => false);
-        },
+      child: Column(
+        children: [
+          GreenButton(
+            text: 'НАПОМНИТЬ ПАРОЛЬ',
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context,
+                  PasswordHasBeenSentScreen.routeName, (route) => false);
+            },
+          ),
+          // SizedBox(
+          //   height: screen.height * 0.04,
+          // ),
+          const _RememberedPasswordButton(),
+        ],
       ),
     );
   }
@@ -108,7 +119,7 @@ class _RememberedPasswordButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.only(top: screen.height * 0.53 - 16),
+      padding: EdgeInsets.only(top: screen.height * 0.04),
       child: ListTileButton(
         text: 'Я вспомнил свой пароль',
         icon: AppIcons.password,

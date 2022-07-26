@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:usainua/models/user.dart';
 // import 'package:usainua/services/auth_service/sign_in_by_email.dart';
 import 'package:usainua/services/auth_service/sign_in_by_fb_service.dart';
 import 'package:usainua/services/auth_service/sign_in_by_google_service.dart';
@@ -9,7 +10,7 @@ class AuthReposytory {
   AuthReposytory();
 
   final SignUpByPhoneService _signUpByPhoneService = SignUpByPhoneService();
-  final SignInByGoogleService _signInByGoogleService = SignInByGoogleService();
+  // final SignInByGoogleService _signInByGoogleService = SignInByGoogleService();
   final SignInByFbService _signInByFbService = SignInByFbService();
   final SignInByPhoneService _signInByPhoneService = SignInByPhoneService();
   // final SignInByEmailService _signInByEmailService = SignInByEmailService();
@@ -41,7 +42,8 @@ class AuthReposytory {
 
   // google auth
   Future<void> googleLogin(NavigatorState navigator) async {
-    await _signInByGoogleService.googleLogin(navigator);
+    final SignInByGoogleService signInByGoogleService = SignInByGoogleService();
+    await signInByGoogleService.googleLogin(navigator);
   }
 
   // faceBook auth

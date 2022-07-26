@@ -93,21 +93,37 @@ class _ScreenRowState extends State<_ScreenRow> {
                 widget.pageController.jumpToPage(widget.page - 1);
               }),
           _RowIndicator(
+            onPressed: () {
+              if (widget.page == 0) return;
+              widget.pageController.jumpToPage(0);
+            },
             color: widget.page == 0
                 ? AppColors.blueIconsColor
                 : AppColors.grayBackground,
           ),
           _RowIndicator(
+            onPressed: () {
+              if (widget.page == 1) return;
+              widget.pageController.jumpToPage(1);
+            },
             color: widget.page == 1
                 ? AppColors.blueIconsColor
                 : AppColors.grayBackground,
           ),
           _RowIndicator(
+            onPressed: () {
+              if (widget.page == 2) return;
+              widget.pageController.jumpToPage(2);
+            },
             color: widget.page == 2
                 ? AppColors.blueIconsColor
                 : AppColors.grayBackground,
           ),
           _RowIndicator(
+            onPressed: () {
+              if (widget.page == 3) return;
+              widget.pageController.jumpToPage(3);
+            },
             color: widget.page == 3
                 ? AppColors.blueIconsColor
                 : AppColors.grayBackground,
@@ -148,14 +164,19 @@ class _RowIndicator extends StatelessWidget {
   const _RowIndicator({
     Key? key,
     required this.color,
+    required this.onPressed,
   }) : super(key: key);
   final Color color;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      AppIcons.pageViewIndicator,
-      color: color,
+    return IconButton(
+      onPressed: onPressed,
+      icon: SvgPicture.asset(
+        AppIcons.pageViewIndicator,
+        color: color,
+      ),
     );
   }
 }

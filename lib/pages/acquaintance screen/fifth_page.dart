@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:usainua/utils/app_colors.dart';
+import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
+import 'package:usainua/widgets/income%20screen/green_button.dart';
 
 class FifthPage extends StatelessWidget {
   const FifthPage({
@@ -17,6 +19,29 @@ class FifthPage extends StatelessWidget {
         _Picture(
           screen: screen,
         ),
+        _TextBox(
+          screen: screen,
+        ),
+        Align(
+          alignment: const Alignment(0, 0.6),
+          child: Text(
+            '10 грн с каждого кг идут на высадку \nдеревьев',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: AppColors.textColor,
+              fontSize: screen.height * 0.017,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+              letterSpacing: 1,
+            ),
+          ),
+        ),
+        Align(
+            alignment: const Alignment(0, 0.83),
+            child: GreenButton(
+              onPressed: () {},
+              text: 'Начать',
+            ))
       ],
     );
   }
@@ -84,6 +109,122 @@ class _Picture extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _TextBox extends StatelessWidget {
+  const _TextBox({
+    Key? key,
+    required this.screen,
+  }) : super(key: key);
+  final Size screen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: const Alignment(0, 0.35),
+      child: Container(
+        padding: EdgeInsets.all(screen.height * 0.019),
+        width: screen.width * 0.87,
+        height: screen.height * 0.17,
+        color: AppColors.grayBackground,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
+              'Наша плантация деревьев ежегодно:',
+              style: TextStyle(
+                color: AppColors.textColor,
+                fontWeight: FontWeight.w400,
+                fontSize: screen.height * 0.017,
+                letterSpacing: 1,
+              ),
+            ),
+            SizedBox(
+              height: screen.height * 0.017,
+            ),
+            _RowText(
+              screen: screen,
+              text: 'Поглощено ',
+              text2: '130 тон ',
+              text3: 'углекислого газа',
+              icon: AppIcons.carbonDioxide1,
+            ),
+            _RowText(
+              screen: screen,
+              text: 'Произведено ',
+              text2: '36 тон ',
+              text3: 'кислорода',
+              icon: AppIcons.carbonDioxide2,
+            ),
+            const SizedBox(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RowText extends StatelessWidget {
+  const _RowText({
+    Key? key,
+    required this.screen,
+    required this.icon,
+    required this.text,
+    required this.text2,
+    required this.text3,
+  }) : super(key: key);
+  final Size screen;
+  final String icon;
+  final String text;
+  final String text2;
+  final String text3;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(
+          icon,
+          color: AppColors.blueIconsColor,
+        ),
+        SizedBox(
+          width: screen.width * 0.05,
+        ),
+        Text.rich(
+          TextSpan(
+            text: text,
+            children: [
+              TextSpan(
+                text: text2,
+                style: TextStyle(
+                  color: AppColors.blueIconsColor,
+                  fontSize: screen.height * 0.017,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                  // letterSpacing: 0.5,
+                ),
+              ),
+              TextSpan(
+                text: text3,
+                style: TextStyle(
+                  color: AppColors.textColor,
+                  fontSize: screen.height * 0.017,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+            ],
+            style: TextStyle(
+              color: AppColors.textColor,
+              fontSize: screen.height * 0.017,
+              fontWeight: FontWeight.w700,
+              fontStyle: FontStyle.normal,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

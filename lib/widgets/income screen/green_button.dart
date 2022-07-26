@@ -30,7 +30,8 @@ class GreenButton extends StatelessWidget {
         color: AppColors.greenButtonColor,
       ),
       width: screen.width - 42,
-      height: screen.height * 0.069,
+      height: 56,
+      // height: screen.height * 0.069,
       child: TextButton(
         onPressed: onPressed,
         child: Text(

@@ -17,8 +17,8 @@ class AppIcons {
   static const String copy = 'assets/icons/copy.svg';
   static const String copyLocation = 'assets/icons/copyLocation.svg';
   static const String edit = 'assets/icons/Edit.svg';
-  // static const String check = 'assets/icons/check.svg';
-  // static const String uncheck = 'assets/icons/uncheck.svg';
+  static const String carbonDioxide1 = 'assets/icons/carbon-dioxide1.svg';
+  static const String carbonDioxide2 = 'assets/icons/carbon-dioxide2.svg';
   // static const String playSVG = 'assets/icons/play.svg';
   // static const String forwardVector = 'assets/icons/forwardVector.svg';
   // static const String plus15 = 'assets/icons/plus_15.svg';

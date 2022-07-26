@@ -1,8 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
+import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 
 class SignInByGoogleService {
   SignInByGoogleService();
@@ -25,32 +28,38 @@ class SignInByGoogleService {
     );
 
     try {
-      //
       await _auth.signInWithCredential(credential);
-      navigator.pushNamedAndRemoveUntil(
-        AcquaintanceScreen.routeName,
-        (_) => false,
-      );
+      final ref = FirebaseFirestore.instance
+          .collection(googleUser.email)
+          .doc('authUser')
+          .withConverter(
+            fromFirestore: UserAuth.fromFirestore,
+            toFirestore: (UserAuth localUserFromFirestore, _) =>
+                localUserFromFirestore.toMap(),
+          );
+      final docSnap = await ref.get();
+      final localUserFromFirestore = docSnap.data();
+      if (localUserFromFirestore != null) {
+        navigator.pushNamedAndRemoveUntil(
+          AcquaintanceScreen.routeName,
+          (_) => false,
+        );
+      } else {
+        await _auth.currentUser?.delete();
+        const String registrationText =
+            'Чтобы пользоваться приложением, Вам \nнеобходимо зарегистрироваться';
+        BotToast.showText(
+          text: registrationText,
+          duration: const Duration(seconds: 5),
+        );
+        navigator.pushNamedAndRemoveUntil(
+          SignUpScreen.routeName,
+          (_) => false,
+        );
+      }
     } catch (e) {
+      await _auth.currentUser?.delete();
       BotToast.showText(text: e.toString());
-      // try {
-      // if (_auth.currentUser == null) {
-      //   BotToast.showText(text: e.toString());
-      //   return;
-      // }
-      //   await _auth.currentUser?.linkWithCredential(credential);
-      //   navigator.pushNamedAndRemoveUntil(
-      //     AcquaintanceScreen.routeName,
-      //     (_) => false,
-      //   );
-      // } on FirebaseAuthException catch (e) {
-      //   print(_auth.currentUser?.uid);
-      //   e.code == 'provider-already-linked'
-      //       ? navigator.pushNamedAndRemoveUntil(
-      //           AcquaintanceScreen.routeName,
-      //           (_) => false,
-      //         )
-      //       : BotToast.showText(text: e.code);
     }
   }
 }

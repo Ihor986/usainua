@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserAuth {
   final String? name;
   final String? email;
@@ -64,6 +66,17 @@ class UserAuth {
       id: map['id'] as String,
     );
   }
+
+  UserAuth.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  )   : name = snapshot.data()?['name'],
+        email = snapshot.data()?['email'],
+        password = snapshot.data()?['password'],
+        isEmailVerify = snapshot.data()?['isEmailVerify'],
+        photoUrl = snapshot.data()?['photoUrl'],
+        phoneNumber = snapshot.data()?['phoneNumber'],
+        id = snapshot.data()?['id'] as String;
 
   String toJson() => json.encode(toMap());
 
