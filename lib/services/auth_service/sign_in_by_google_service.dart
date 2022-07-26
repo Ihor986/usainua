@@ -13,7 +13,7 @@ class SignInByGoogleService {
   // GoogleSignInAccount? _user;
   // GoogleSignInAccount? get user => _user;
 
-  Future<void> googleLogin(BuildContext context) async {
+  Future<void> googleLogin(NavigatorState navigator) async {
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     if (googleUser == null) return;
     // _user = googleUser;
@@ -26,29 +26,32 @@ class SignInByGoogleService {
 
     try {
       //
-      await _auth.signInWithCredential(credential).then(
-            (value) => Navigator.of(context, rootNavigator: true)
-                .pushNamedAndRemoveUntil(
-              AcquaintanceScreen.routeName,
-              (_) => false,
-            ),
-          );
+      await _auth.signInWithCredential(credential);
+      navigator.pushNamedAndRemoveUntil(
+        AcquaintanceScreen.routeName,
+        (_) => false,
+      );
     } catch (e) {
-      try {
-        if (_auth.currentUser == null) {
-          BotToast.showText(text: e.toString());
-          return;
-        }
-        await _auth.currentUser?.linkWithCredential(credential).then(
-              (value) => Navigator.of(context, rootNavigator: true)
-                  .pushNamedAndRemoveUntil(
-                AcquaintanceScreen.routeName,
-                (_) => false,
-              ),
-            );
-      } on FirebaseAuthException catch (e) {
-        BotToast.showText(text: e.code);
-      }
+      BotToast.showText(text: e.toString());
+      // try {
+      // if (_auth.currentUser == null) {
+      //   BotToast.showText(text: e.toString());
+      //   return;
+      // }
+      //   await _auth.currentUser?.linkWithCredential(credential);
+      //   navigator.pushNamedAndRemoveUntil(
+      //     AcquaintanceScreen.routeName,
+      //     (_) => false,
+      //   );
+      // } on FirebaseAuthException catch (e) {
+      //   print(_auth.currentUser?.uid);
+      //   e.code == 'provider-already-linked'
+      //       ? navigator.pushNamedAndRemoveUntil(
+      //           AcquaintanceScreen.routeName,
+      //           (_) => false,
+      //         )
+      //       : BotToast.showText(text: e.code);
     }
   }
 }
+// }

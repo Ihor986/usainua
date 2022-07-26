@@ -15,17 +15,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
     on<VerifyPhoneNumberEvent>(
       (event, emit) {
+        // state.authService.dispouseCode();
         state.authReposytory.verifyPhoneNumber(
           phoneNumber: state.authService.phoneInputController.text,
-          // emailAddress: state.authService.emailInputController.text,
-          // name: state.authService.nameInputController.text,
         );
       },
     );
+
     on<SignUpEvent>(
       (event, emit) {
         state.authReposytory.sendCodeToFirebase(
-          context: event.context,
+          navigator: event.navigator,
           smsCode: state.authService.getCode,
           phoneNumber: state.authService.phoneInputController.text,
           emailAddress: state.authService.emailInputController.text,
@@ -33,19 +33,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
     );
-    // on<SignInEvent>(
-    //   (event, emit) {
-    //     state.authReposytory.sendCodeToFirebase(event.context);
-    //   },
-    // );
+
+    on<VerifyPhoneNumberForSignInEvent>(
+      (event, emit) {
+        // state.authService.dispouseCode();
+        state.authReposytory.verifyPhoneNumberForSignIn(
+          phoneNumber: state.authService.phoneInputController.text,
+        );
+      },
+    );
+
+    on<SignInEvent>(
+      (event, emit) {
+        print('bloc');
+        state.authReposytory.sendCodeToFirebaseForSignIn(
+          navigator: event.navigator,
+          smsCode: state.authService.getCode,
+        );
+      },
+    );
+
     on<SignInWithGoogleEvent>(
       (event, emit) {
-        state.authReposytory.googleLogin(event.context);
+        state.authReposytory.googleLogin(event.navigator);
       },
     );
     on<SignInWithFbEvent>(
       (event, emit) {
-        state.authReposytory.faceBookLogin(event.context);
+        state.authReposytory.faceBookLogin(event.navigator);
       },
     );
   }

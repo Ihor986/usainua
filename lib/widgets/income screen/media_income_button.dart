@@ -21,7 +21,9 @@ class MedisIncome extends StatelessWidget {
             icon: AppImages.facebook,
             onPressed: () {
               context.read<AuthBloc>().add(
-                    SignInWithFbEvent(context: context),
+                    SignInWithFbEvent(
+                      navigator: Navigator.of(context, rootNavigator: true),
+                    ),
                   );
             },
             screen: screen,
@@ -33,7 +35,9 @@ class MedisIncome extends StatelessWidget {
             icon: AppImages.google,
             onPressed: () {
               context.read<AuthBloc>().add(
-                    SignInWithGoogleEvent(context: context),
+                    SignInWithGoogleEvent(
+                      navigator: Navigator.of(context, rootNavigator: true),
+                    ),
                   );
             },
             screen: screen,

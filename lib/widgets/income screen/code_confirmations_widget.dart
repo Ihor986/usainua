@@ -11,38 +11,49 @@ import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
 
 class CodeConfirmationsWidget extends StatelessWidget {
-  const CodeConfirmationsWidget({Key? key}) : super(key: key);
-  // static const routeName = '/CodeConfirmationsScreen';
-  // static final GlobalKey<NavigatorState> _navigatorKey =
-  //     GlobalKey<NavigatorState>();
+  const CodeConfirmationsWidget({
+    Key? key,
+    required this.onClick,
+    required this.text,
+  }) : super(key: key);
+  final String text;
+  final void Function() onClick;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: GestureDetector(
-        onTap: () {
-          if (FocusNode().hasFocus) {
-            FocusScope.of(context).unfocus();
-          } else {
-            FocusScope.of(context).requestFocus(FocusNode());
-          }
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Stack(
-            children: const [
-              TextIncome(text: 'Код\nподтверждения'),
-              _HintText(
-                phoneNumber: '+38 063 058 8512',
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        // state.authService.dispouseCode();
+        return Scaffold(
+          backgroundColor: AppColors.white,
+          body: GestureDetector(
+            onTap: () {
+              if (FocusNode().hasFocus) {
+                FocusScope.of(context).unfocus();
+              } else {
+                FocusScope.of(context).requestFocus(FocusNode());
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Stack(
+                children: [
+                  const TextIncome(text: 'Код\nподтверждения'),
+                  const _HintText(
+                    phoneNumber: '+38 063 058 8512',
+                  ),
+                  _SignUpForm(
+                    onClick: onClick,
+                    text: text,
+                  ),
+                  const _ResendCode(),
+                  const _Registered(),
+                ],
               ),
-              _SignUpForm(),
-              _ResendCode(),
-              _Registered(),
-            ],
+            ),
           ),
-        ),
-      ),
-      resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: false,
+        );
+      },
     );
   }
 }
@@ -67,7 +78,13 @@ class _HintText extends StatelessWidget {
 }
 
 class _SignUpForm extends StatefulWidget {
-  const _SignUpForm({Key? key}) : super(key: key);
+  const _SignUpForm({
+    Key? key,
+    required this.onClick,
+    required this.text,
+  }) : super(key: key);
+  final String text;
+  final void Function() onClick;
 
   @override
   State<_SignUpForm> createState() => _SignUpFormState();
@@ -100,12 +117,8 @@ class _SignUpFormState extends State<_SignUpForm> {
             Padding(
               padding: const EdgeInsets.all(5),
               child: GreenButton(
-                text: 'Зарегистрироваться',
-                onPressed: () {
-                  context.read<AuthBloc>().add(
-                        SignUpEvent(context: context),
-                      );
-                },
+                text: widget.text,
+                onPressed: widget.onClick,
               ),
             ),
           ],

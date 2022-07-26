@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
+import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen%20copy.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
@@ -171,14 +172,19 @@ class __IncomeFormState extends State<_IncomeForm> {
                         AcquaintanceScreen.routeName, (route) => false);
 
                     if (!_formKey.currentState!.validate()) return;
+                    state.authService.dispouseCode();
                     if (_user?.phoneNumber ==
                         state.authService.phoneInputController.text) {
                       Navigator.pushNamedAndRemoveUntil(context,
                           AcquaintanceScreen.routeName, (route) => false);
                     } else {
-                      context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
-                      Navigator.pushNamedAndRemoveUntil(context,
-                          CodeConfirmationsScreen.routeName, (route) => false);
+                      context
+                          .read<AuthBloc>()
+                          .add(VerifyPhoneNumberForSignInEvent());
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          CodeConfirmationsSignInScreen.routeName,
+                          (route) => false);
                     }
                   },
                 ),

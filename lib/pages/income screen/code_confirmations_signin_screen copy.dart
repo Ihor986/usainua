@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/widgets/income%20screen/code_confirmations_widget.dart';
 
-class CodeConfirmationsScreen extends StatelessWidget {
-  const CodeConfirmationsScreen({Key? key}) : super(key: key);
-  static const routeName = '/CodeConfirmationsScreen';
+class CodeConfirmationsSignInScreen extends StatelessWidget {
+  const CodeConfirmationsSignInScreen({Key? key}) : super(key: key);
+  static const routeName = '/CodeConfirmationsSignInScreen';
   @override
   Widget build(BuildContext context) {
     return CodeConfirmationsWidget(
-      text: 'Зарегистрироваться',
+      text: 'Войти',
       onClick: () {
         context.read<AuthBloc>().add(
-              SignUpEvent(
+              SignInEvent(
                 navigator: Navigator.of(context, rootNavigator: true),
               ),
             );

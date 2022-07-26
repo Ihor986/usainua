@@ -226,11 +226,11 @@ class _SignUpFormState extends State<_SignUpForm> {
                 child: GreenButton(
                   text: 'Зарегистрироваться',
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
-                      Navigator.pushNamedAndRemoveUntil(context,
-                          CodeConfirmationsScreen.routeName, (route) => false);
-                    }
+                    if (!_formKey.currentState!.validate()) return;
+                    state.authService.dispouseCode();
+                    context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        CodeConfirmationsScreen.routeName, (route) => false);
                   },
                 ),
               ),

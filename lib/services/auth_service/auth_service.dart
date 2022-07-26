@@ -18,6 +18,10 @@ class AuthService {
         : _codeController = _codeController! + value;
   }
 
+  void dispouseCode() {
+    _codeController = null;
+  }
+
   void changePhoneValue(String value) {
     if (value.length == 1) {
       bool isWrongValue =
