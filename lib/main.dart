@@ -35,22 +35,11 @@ class MyApp extends StatelessWidget {
         // MultiRepositoryProvider(
         //   providers: const [
         //     // RepositoryProvider(create: (context) => UserRepository()),
-        //     // RepositoryProvider(create: (context) => AuthReposytory('')),
-        //     // RepositoryProvider(create: (context) => TalesListRepository()),
-        //     // RepositoryProvider(create: (context) => SelectionsListRepository()),
         //   ],
         //   child:
         MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
-        //       // BlocProvider<SelectionsBloc>(create: (context) => SelectionsBloc()),
-        //       // BlocProvider<MainScreenBloc>(create: (context) => MainScreenBloc()),
-        //       // BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
-        //       // BlocProvider<ProfileBloc>(create: (context) => ProfileBloc()),
-        //       // BlocProvider<DeleteBloc>(create: (context) => DeleteBloc()),
-        //       // BlocProvider<SubscribeBloc>(create: (context) => SubscribeBloc()),
-        //       // BlocProvider<RecordBloc>(create: (context) => RecordBloc()),
-        //       // BlocProvider<AudioScreenBloc>(create: (context) => AudioScreenBloc()),
       ],
       child: MaterialApp(
         theme: _buildTheme(Brightness.dark),
@@ -59,7 +48,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: true,
         initialRoute: SignInScreen.routeName,
         onGenerateRoute: AppRouter.generateRoute,
-        //   ),
       ),
     );
   }

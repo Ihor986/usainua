@@ -3,43 +3,44 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
+import 'package:usainua/services/auth_service/sign_by_phone.dart';
 
-class SignInByPhoneService {
-  SignInByPhoneService();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+class SignInByPhoneService extends VerifyByPhoneService {
+  SignInByPhoneService() : super();
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  String? _verificationCode;
+  // String? _verificationCode;
 
-  Future<void> verifyPhoneNumber({
-    required String phoneNumberForVerification,
-  }) async {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: phoneNumberForVerification,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        BotToast.showText(text: e.toString());
-      },
-      codeSent: (String verificationId, int? resendToken) async {
-        _verificationCode = verificationId;
-      },
-      timeout: const Duration(seconds: 60),
-      codeAutoRetrievalTimeout: (String verificationId) async {
-        _verificationCode = verificationId;
-      },
-    );
-  }
+  // Future<void> verifyPhoneNumber({
+  //   required String phoneNumberForVerification,
+  // }) async {
+  //   await FirebaseAuth.instance.verifyPhoneNumber(
+  //     phoneNumber: phoneNumberForVerification,
+  //     verificationCompleted: (PhoneAuthCredential credential) async {
+  //       await _auth.signInWithCredential(credential);
+  //     },
+  //     verificationFailed: (FirebaseAuthException e) {
+  //       BotToast.showText(text: e.toString());
+  //     },
+  //     codeSent: (String verificationId, int? resendToken) async {
+  //       _verificationCode = verificationId;
+  //     },
+  //     timeout: const Duration(seconds: 60),
+  //     codeAutoRetrievalTimeout: (String verificationId) async {
+  //       _verificationCode = verificationId;
+  //     },
+  //   );
+  // }
 
   Future<void> sendCodeToFirebase({
     required NavigatorState navigator,
     required String smsCode,
   }) async {
     try {
-      if (_verificationCode != null && smsCode.length == 6) {
+      if (super.verificationCode != null && smsCode.length == 6) {
         PhoneAuthCredential credential = PhoneAuthProvider.credential(
-            verificationId: _verificationCode!, smsCode: smsCode);
-        await _auth.signInWithCredential(credential);
+            verificationId: super.verificationCode!, smsCode: smsCode);
+        await super.auth.signInWithCredential(credential);
 
         // if (_auth.currentUser?.emailVerified == true) {
         //   navigator.pushNamedAndRemoveUntil(
@@ -48,9 +49,9 @@ class SignInByPhoneService {
         //   );
         //   return;
         // }
-        if (_auth.currentUser?.email == null) {
+        if (super.auth.currentUser?.email == null) {
           BotToast.showText(text: registrationText);
-          await _auth.currentUser?.delete();
+          await super.auth.currentUser?.delete();
           navigator.pushNamedAndRemoveUntil(
             SignUpScreen.routeName,
             (_) => false,

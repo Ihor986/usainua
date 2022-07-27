@@ -7,19 +7,38 @@ class AuthService {
   final TextEditingController phoneInputController = TextEditingController();
   final TextEditingController nameInputController = TextEditingController();
   final TextEditingController emailInputController = TextEditingController();
-  // final TextEditingController codeController = TextEditingController();
-  String? _codeController;
+  final TextEditingController codeController = TextEditingController();
+  final TextEditingController codeController2 = TextEditingController();
+  final TextEditingController codeController3 = TextEditingController();
+  final TextEditingController codeController4 = TextEditingController();
+  final TextEditingController codeController5 = TextEditingController();
+  final TextEditingController codeController6 = TextEditingController();
 
-  String? get getCode => _codeController;
+  String get getCode {
+    String code;
+    code = codeController.text +
+        codeController2.text +
+        codeController3.text +
+        codeController4.text +
+        codeController5.text +
+        codeController6.text;
 
-  void setCode(String value) {
-    _codeController == null
-        ? _codeController = value
-        : _codeController = _codeController! + value;
+    return code;
   }
 
+  // void setCode(String value) {
+  //   _codeController == null
+  //       ? _codeController = value
+  //       : _codeController = _codeController! + value;
+  // }
+
   void dispouseCode() {
-    _codeController = null;
+    codeController.text = '';
+    codeController2.text = '';
+    codeController3.text = '';
+    codeController4.text = '';
+    codeController5.text = '';
+    codeController6.text = '';
   }
 
   void changePhoneValue(String value) {

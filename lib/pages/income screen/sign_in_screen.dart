@@ -71,7 +71,7 @@ class _IncomeForm extends StatefulWidget {
 class __IncomeFormState extends State<_IncomeForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _user = FirebaseAuth.instance.currentUser;
-  bool _isSecure = true;
+  // bool _isSecure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -125,44 +125,44 @@ class __IncomeFormState extends State<_IncomeForm> {
                     ),
                     // _user != null
                     //     ?
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: SizedBox(
-                        height: 56,
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'Ваш пороль*',
-                            hintStyle: const TextStyle(
-                              color: AppColors.disactiveTextColor,
-                            ),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(16.0),
-                              ),
-                            ),
-                            fillColor: AppColors.grayBackground,
-                            filled: true,
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  _isSecure = !_isSecure;
-                                });
-                              },
-                              icon: SvgPicture.asset(
-                                AppIcons.yey,
-                                width: widget.screen.height * 0.0246,
-                                color: AppColors.textColor,
-                              ),
-                            ),
-                          ),
-                          obscureText: _isSecure,
-                          style: const TextStyle(
-                            color: AppColors.textColor,
-                          ),
-                        ),
-                      ),
-                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.all(5),
+                    //   child: SizedBox(
+                    //     height: 56,
+                    //     child: TextFormField(
+                    //       decoration: InputDecoration(
+                    //         hintText: 'Ваш пороль*',
+                    //         hintStyle: const TextStyle(
+                    //           color: AppColors.disactiveTextColor,
+                    //         ),
+                    //         border: const OutlineInputBorder(
+                    //           borderSide: BorderSide.none,
+                    //           borderRadius: BorderRadius.all(
+                    //             Radius.circular(16.0),
+                    //           ),
+                    //         ),
+                    //         fillColor: AppColors.grayBackground,
+                    //         filled: true,
+                    //         suffixIcon: IconButton(
+                    //           onPressed: () {
+                    //             setState(() {
+                    //               _isSecure = !_isSecure;
+                    //             });
+                    //           },
+                    //           icon: SvgPicture.asset(
+                    //             AppIcons.yey,
+                    //             width: widget.screen.height * 0.0246,
+                    //             color: AppColors.textColor,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       obscureText: _isSecure,
+                    //       style: const TextStyle(
+                    //         color: AppColors.textColor,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
                     // : const SizedBox(),
                   ],
                 ),
@@ -184,15 +184,15 @@ class __IncomeFormState extends State<_IncomeForm> {
                         state.authService.phoneInputController.text) {
                       Navigator.pushNamedAndRemoveUntil(context,
                           AcquaintanceScreen.routeName, (route) => false);
-                    } else {
-                      context
-                          .read<AuthBloc>()
-                          .add(VerifyPhoneNumberForSignInEvent());
-                      Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          CodeConfirmationsSignInScreen.routeName,
-                          (route) => false);
+                      return;
                     }
+                    context
+                        .read<AuthBloc>()
+                        .add(VerifyPhoneNumberForSignInEvent());
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        CodeConfirmationsSignInScreen.routeName,
+                        (route) => false);
                   },
                 ),
               ),

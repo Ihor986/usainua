@@ -5,32 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
+import 'package:usainua/services/auth_service/sign_by_phone.dart';
 
-class SignUpByPhoneService {
-  SignUpByPhoneService();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  String? _verificationCode;
-
-  Future<void> verifyPhoneNumber({
-    required String phoneNumberForVerification,
-  }) async {
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNumberForVerification,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        BotToast.showText(text: e.toString());
-      },
-      codeSent: (String verificationId, int? resendToken) async {
-        _verificationCode = verificationId;
-      },
-      timeout: const Duration(seconds: 60),
-      codeAutoRetrievalTimeout: (String verificationId) async {
-        _verificationCode = verificationId;
-      },
-    );
-  }
+class SignUpByPhoneService extends VerifyByPhoneService {
+  SignUpByPhoneService() : super();
 
   Future<void> sendCodeToFirebase({
     required NavigatorState navigator,
@@ -40,7 +18,7 @@ class SignUpByPhoneService {
     required String phoneNumberForVerification,
   }) async {
     try {
-      if (_verificationCode != null && smsCode.length == 6) {
+      if (super.verificationCode != null && smsCode.length == 6) {
         await _createUser(
           navigator: navigator,
           emailAddress: emailAddress,
@@ -48,14 +26,14 @@ class SignUpByPhoneService {
         );
 
         final PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: _verificationCode!,
+          verificationId: super.verificationCode!,
           smsCode: smsCode,
         );
-        if (_auth.currentUser == null) return;
-        await _auth.currentUser!.updatePhoneNumber(credential);
+        if (super.auth.currentUser == null) return;
+        await super.auth.currentUser!.updatePhoneNumber(credential);
         await _createUserData(
           navigator: navigator,
-          emailAddress: _auth.currentUser!.email,
+          emailAddress: super.auth.currentUser!.email,
           name: name,
           password: phoneNumberForVerification + name,
           phone: phoneNumberForVerification,
@@ -86,12 +64,12 @@ class SignUpByPhoneService {
     required String password,
   }) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: emailAddress,
-        password: password,
-      );
-      await _auth.setLanguageCode('ru');
-      await _auth.currentUser?.sendEmailVerification();
+      await super.auth.createUserWithEmailAndPassword(
+            email: emailAddress,
+            password: password,
+          );
+      await super.auth.setLanguageCode('ru');
+      await super.auth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       navigator.pushNamedAndRemoveUntil(
         SignUpScreen.routeName,
@@ -118,7 +96,7 @@ class SignUpByPhoneService {
         phoneNumber: phone,
         name: name,
         password: password,
-        isEmailVerify: _auth.currentUser?.emailVerified,
+        isEmailVerify: super.auth.currentUser?.emailVerified,
       );
       await FirebaseFirestore.instance
           .collection(emailAddress ?? phone)

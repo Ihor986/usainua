@@ -17,6 +17,9 @@ class CodeConfirmationsScreen extends StatelessWidget {
               ),
             );
       },
+      resend: () {
+        context.read<AuthBloc>().add(VerifyPhoneNumberEvent());
+      },
     );
   }
 }
