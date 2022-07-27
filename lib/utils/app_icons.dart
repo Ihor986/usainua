@@ -21,7 +21,7 @@ class AppIcons {
   static const String carbonDioxide2 = 'assets/icons/carbon-dioxide2.svg';
   static const String notification = 'assets/icons/Notification.svg';
   static const String massage = 'assets/icons/massage.svg';
-  // static const String plus15 = 'assets/icons/plus_15.svg';
+  static const String calculator = 'assets/icons/calculator.svg';
   // static const String minus15 = 'assets/icons/minus_15.svg';
   // static const String ellipseRad = 'assets/icons/EllipseRed.svg';
   // static const String power0 = 'assets/icons/power0svg.svg';

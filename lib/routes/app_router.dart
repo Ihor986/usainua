@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
-import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen%20copy.dart';
+import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';

@@ -46,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<SignInEvent>(
       (event, emit) {
-        print('bloc');
+        // print('bloc');
         state.authReposytory.sendCodeToFirebaseForSignIn(
           navigator: event.navigator,
           smsCode: state.authService.getCode,

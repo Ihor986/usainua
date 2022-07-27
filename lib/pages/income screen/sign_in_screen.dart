@@ -1,17 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
-import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
-import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen%20copy.dart';
+import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/green_button.dart';
-import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/media_income_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:usainua/models/user.dart';
 // import 'package:usainua/services/auth_service/sign_in_by_email.dart';
 import 'package:usainua/services/auth_service/sign_in_by_fb_service.dart';
 import 'package:usainua/services/auth_service/sign_in_by_google_service.dart';

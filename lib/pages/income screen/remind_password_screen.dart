@@ -5,7 +5,7 @@ import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/green_button.dart';
 import 'package:usainua/widgets/income%20screen/hint_text.dart';
-import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
 
 class RemindPasswordScreen extends StatelessWidget {
