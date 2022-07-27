@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserAuth {
+class LocalUser {
   final String? name;
   final String? email;
   final String? password;
@@ -11,7 +11,8 @@ class UserAuth {
   final String? photoUrl;
   final String? phoneNumber;
   final String id;
-  UserAuth({
+  final int balance;
+  LocalUser({
     this.name,
     this.email,
     this.password,
@@ -19,9 +20,10 @@ class UserAuth {
     this.photoUrl,
     this.phoneNumber,
     required this.id,
+    required this.balance,
   });
 
-  UserAuth copyWith({
+  LocalUser copyWith({
     String? name,
     String? email,
     String? password,
@@ -29,8 +31,9 @@ class UserAuth {
     String? photoUrl,
     String? phoneNumber,
     String? id,
+    int? balance,
   }) {
-    return UserAuth(
+    return LocalUser(
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,
@@ -38,6 +41,7 @@ class UserAuth {
       photoUrl: photoUrl ?? this.photoUrl,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       id: id ?? this.id,
+      balance: balance ?? this.balance,
     );
   }
 
@@ -50,11 +54,12 @@ class UserAuth {
       'photoUrl': photoUrl,
       'phoneNumber': phoneNumber,
       'id': id,
+      'balance': balance,
     };
   }
 
-  factory UserAuth.fromMap(Map<String, dynamic> map) {
-    return UserAuth(
+  factory LocalUser.fromMap(Map<String, dynamic> map) {
+    return LocalUser(
       name: map['name'] != null ? map['name'] as String : null,
       email: map['email'] != null ? map['email'] as String : null,
       password: map['password'] != null ? map['password'] as String : null,
@@ -64,10 +69,10 @@ class UserAuth {
       phoneNumber:
           map['phoneNumber'] != null ? map['phoneNumber'] as String : null,
       id: map['id'] as String,
+      balance: map['balance'] as int,
     );
   }
-
-  UserAuth.fromFirestore(
+  LocalUser.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   )   : name = snapshot.data()?['name'],
@@ -76,20 +81,21 @@ class UserAuth {
         isEmailVerify = snapshot.data()?['isEmailVerify'],
         photoUrl = snapshot.data()?['photoUrl'],
         phoneNumber = snapshot.data()?['phoneNumber'],
+        balance = snapshot.data()?['balance'],
         id = snapshot.data()?['id'] as String;
 
   String toJson() => json.encode(toMap());
 
-  factory UserAuth.fromJson(String source) =>
-      UserAuth.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory LocalUser.fromJson(String source) =>
+      LocalUser.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserAuth(name: $name, email: $email, password: $password, isEmailVerify: $isEmailVerify, photoUrl: $photoUrl, phoneNumber: $phoneNumber, id: $id)';
+    return 'UserAuth(name: $name, email: $email, password: $password, isEmailVerify: $isEmailVerify, photoUrl: $photoUrl, phoneNumber: $phoneNumber, id: $id, balance: $balance)';
   }
 
   @override
-  bool operator ==(covariant UserAuth other) {
+  bool operator ==(covariant LocalUser other) {
     if (identical(this, other)) return true;
 
     return other.name == name &&
@@ -98,7 +104,8 @@ class UserAuth {
         other.isEmailVerify == isEmailVerify &&
         other.photoUrl == photoUrl &&
         other.phoneNumber == phoneNumber &&
-        other.id == id;
+        other.id == id &&
+        other.balance == balance;
   }
 
   @override
@@ -109,6 +116,7 @@ class UserAuth {
         isEmailVerify.hashCode ^
         photoUrl.hashCode ^
         phoneNumber.hashCode ^
-        id.hashCode;
+        id.hashCode ^
+        balance.hashCode;
   }
 }

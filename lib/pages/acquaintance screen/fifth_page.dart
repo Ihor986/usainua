@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:usainua/pages/home%20screen/first_page.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
-import 'package:usainua/widgets/income%20screen/green_button.dart';
+import 'package:usainua/widgets/green_button.dart';
 
 class FifthPage extends StatelessWidget {
   const FifthPage({
@@ -39,7 +40,10 @@ class FifthPage extends StatelessWidget {
         Align(
             alignment: const Alignment(0, 0.83),
             child: GreenButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, FirstPageHomeScreen.routeName, (route) => false);
+              },
               text: 'Начать',
             ))
       ],

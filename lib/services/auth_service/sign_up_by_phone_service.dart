@@ -6,6 +6,7 @@ import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/services/auth_service/sign_by_phone.dart';
+import 'package:usainua/services/toast_bot_servise.dart';
 
 class SignUpByPhoneService extends VerifyByPhoneService {
   SignUpByPhoneService() : super();
@@ -54,7 +55,7 @@ class SignUpByPhoneService extends VerifyByPhoneService {
         SignUpScreen.routeName,
         (_) => false,
       );
-      BotToast.showText(text: e.toString());
+      ToastBot.showText(text: e.toString());
     }
   }
 
@@ -75,10 +76,10 @@ class SignUpByPhoneService extends VerifyByPhoneService {
         SignUpScreen.routeName,
         (_) => false,
       );
-      BotToast.showText(text: e.message.toString());
+      ToastBot.showText(text: e.message.toString());
     } catch (e) {
       // print(e);
-      BotToast.showText(text: e.toString());
+      ToastBot.showText(text: e.toString());
     }
   }
 
@@ -90,12 +91,13 @@ class SignUpByPhoneService extends VerifyByPhoneService {
     required String phone,
   }) async {
     try {
-      UserAuth user = UserAuth(
+      LocalUser user = LocalUser(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         email: emailAddress,
         phoneNumber: phone,
         name: name,
         password: password,
+        balance: 0,
         isEmailVerify: super.auth.currentUser?.emailVerified,
       );
       await FirebaseFirestore.instance
@@ -107,7 +109,7 @@ class SignUpByPhoneService extends VerifyByPhoneService {
         SignUpScreen.routeName,
         (_) => false,
       );
-      BotToast.showText(text: e.toString());
+      ToastBot.showText(text: e.toString());
       // print(e);
     }
   }

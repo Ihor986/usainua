@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
       ],
       child: MaterialApp(
-        theme: _buildTheme(Brightness.dark),
+        theme: _buildTheme(Brightness.light),
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
         debugShowCheckedModeBanner: true,

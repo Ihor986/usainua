@@ -1,5 +1,6 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../toast_bot_servise.dart';
 
 abstract class VerifyByPhoneService {
   VerifyByPhoneService();
@@ -15,7 +16,7 @@ abstract class VerifyByPhoneService {
         await auth.signInWithCredential(credential);
       },
       verificationFailed: (FirebaseAuthException e) {
-        BotToast.showText(text: e.toString());
+        ToastBot.showText(text: e.toString());
       },
       codeSent: (String verificationId, int? resendToken) async {
         verificationCode = verificationId;

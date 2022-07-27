@@ -5,7 +5,7 @@ import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/widgets/income%20screen/green_button.dart';
+import 'package:usainua/widgets/green_button.dart';
 import 'package:usainua/widgets/income%20screen/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/media_income_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';

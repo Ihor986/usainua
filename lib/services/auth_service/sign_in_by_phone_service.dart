@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/services/auth_service/sign_by_phone.dart';
+import 'package:usainua/services/toast_bot_servise.dart';
 
 class SignInByPhoneService extends VerifyByPhoneService {
   SignInByPhoneService() : super();
@@ -63,10 +64,10 @@ class SignInByPhoneService extends VerifyByPhoneService {
           (_) => false,
         );
         // await _auth.signOut();
-        // BotToast.showText(text: emailVerify);
+        // ToastBot.showText(text: emailVerify);
       }
     } catch (e) {
-      BotToast.showText(text: e.toString());
+      ToastBot.showText(text: e.toString());
     }
   }
 

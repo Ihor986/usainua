@@ -6,6 +6,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:usainua/models/user.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
+import 'package:usainua/services/toast_bot_servise.dart';
 
 class SignInByFbService {
   SignInByFbService();
@@ -20,12 +21,14 @@ class SignInByFbService {
     try {
       var i = await _auth.signInWithCredential(credential);
       // print(i.user?.providerData.elementAt(0).email);
+      await _auth.currentUser
+          ?.updateEmail(i.user?.providerData.elementAt(0).email ?? '');
       final ref = FirebaseFirestore.instance
           .collection(i.user?.providerData.elementAt(0).email ?? '')
           .doc('authUser')
           .withConverter(
-            fromFirestore: UserAuth.fromFirestore,
-            toFirestore: (UserAuth localUserFromFirestore, _) =>
+            fromFirestore: LocalUser.fromFirestore,
+            toFirestore: (LocalUser localUserFromFirestore, _) =>
                 localUserFromFirestore.toMap(),
           );
       final docSnap = await ref.get();
@@ -39,7 +42,7 @@ class SignInByFbService {
         await _auth.currentUser?.delete();
         const String registrationText =
             'Чтобы пользоваться приложением, Вам \nнеобходимо зарегистрироваться';
-        BotToast.showText(
+        ToastBot.showText(
           text: registrationText,
           duration: const Duration(seconds: 5),
         );
@@ -50,7 +53,7 @@ class SignInByFbService {
       }
     } catch (e) {
       await _auth.currentUser?.delete();
-      BotToast.showText(text: e.toString());
+      ToastBot.showText(text: e.toString());
     }
   }
 

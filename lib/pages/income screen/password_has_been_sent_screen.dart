@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_images.dart';
-import 'package:usainua/widgets/income%20screen/green_button.dart';
+import 'package:usainua/widgets/green_button.dart';
 
 class PasswordHasBeenSentScreen extends StatelessWidget {
   const PasswordHasBeenSentScreen({Key? key}) : super(key: key);
