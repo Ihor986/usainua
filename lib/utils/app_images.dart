@@ -11,5 +11,17 @@ class AppImages {
   static const String car = 'assets/images/car.png';
   static const String plane = 'assets/images/plane.png';
   static const String amazon = 'assets/images/amazon.png';
-  // static const String innotimerafiki = 'assets/images/innotimerafiki.svg';
+  static const String boxscreen = 'assets/images/boxscreen.png';
+  static const String profilescreen = 'assets/images/profilescreen.png';
+  static const String choicescreen = 'assets/images/choicescreen.png';
+  // static const String plane = 'assets/images/plane.png';
+  // static const String amazon = 'assets/images/amazon.png';
+  //   static const String logo = 'assets/images/logo.svg';
+  // static const String car = 'assets/images/car.png';
+  // static const String plane = 'assets/images/plane.png';
+  // static const String amazon = 'assets/images/amazon.png';
+  //   static const String logo = 'assets/images/logo.svg';
+  // static const String car = 'assets/images/car.png';
+  // static const String plane = 'assets/images/plane.png';
+  // static const String amazon = 'assets/images/amazon.png';
 }

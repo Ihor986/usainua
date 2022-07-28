@@ -6,8 +6,9 @@ part 'navigation_state.dart';
 
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   NavigationBloc() : super(NavigationState()) {
-    on<NavigationEvent>((event, emit) {
-      // TODO: implement event handler
+    on<ChangePage>((event, emit) {
+      if (state.pageIndex == event.index) return;
+      emit(NavigationState(pageIndex: event.index));
     });
   }
 }

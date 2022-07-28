@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
-import 'package:usainua/pages/home%20screen/main_screen.dart';
+import 'package:usainua/pages/main_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';

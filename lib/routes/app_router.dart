@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
+import 'package:usainua/pages/box%20screen/first_page.dart';
+import 'package:usainua/pages/choice%20screen/first_page.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
-import 'package:usainua/pages/home%20screen/main_screen.dart';
+import 'package:usainua/pages/main_screen.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
+import 'package:usainua/pages/profile/first_page.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -60,8 +63,26 @@ class AppRouter {
         builder = (_) => const FirstPageHomeScreen();
         break;
 
-      // case MainScreen.routeName:
-      //   builder = (_) => const MainScreen();
+      // box screen
+
+      case FirstPageProBoxScreen.routeName:
+        builder = (_) => const FirstPageProBoxScreen();
+        break;
+
+      // profile screen
+
+      case FirstPageProfileScreen.routeName:
+        builder = (_) => const FirstPageProfileScreen();
+        break;
+
+      // choice screen
+
+      case FirstPageProChoiceScreen.routeName:
+        builder = (_) => const FirstPageProChoiceScreen();
+        break;
+
+      // case FirstPageProChoiceScreen.routeName:
+      //   builder = (_) => const FirstPageProChoiceScreen();
       //   break;
 
       // case PasswordHasBeenSentScreen.routeName:
