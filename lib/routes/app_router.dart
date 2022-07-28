@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
+import 'package:usainua/pages/home%20screen/main_screen.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
@@ -51,12 +52,16 @@ class AppRouter {
 
       // Home screen
 
+      case MainScreen.routeName:
+        builder = (_) => const MainScreen();
+        break;
+
       case FirstPageHomeScreen.routeName:
         builder = (_) => const FirstPageHomeScreen();
         break;
 
-      // case FirstPage.routeName:
-      //   builder = (_) => const FirstPage();
+      // case MainScreen.routeName:
+      //   builder = (_) => const MainScreen();
       //   break;
 
       // case PasswordHasBeenSentScreen.routeName:

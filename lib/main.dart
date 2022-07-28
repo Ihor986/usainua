@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
+import 'package:usainua/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:usainua/firebase_options.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/routes/app_router.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
+        BlocProvider<NavigationBloc>(create: (context) => NavigationBloc()),
       ],
       child: MaterialApp(
         theme: _buildTheme(Brightness.light),

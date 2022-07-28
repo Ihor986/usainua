@@ -22,7 +22,7 @@ class AppIcons {
   static const String notification = 'assets/icons/Notification.svg';
   static const String massage = 'assets/icons/massage.svg';
   static const String calculator = 'assets/icons/calculator.svg';
-  // static const String minus15 = 'assets/icons/minus_15.svg';
+  static const String plus = 'assets/icons/plus.svg';
   // static const String ellipseRad = 'assets/icons/EllipseRed.svg';
   // static const String power0 = 'assets/icons/power0svg.svg';
   // static const String power1 = 'assets/icons/power1.svg';

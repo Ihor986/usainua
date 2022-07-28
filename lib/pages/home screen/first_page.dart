@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:usainua/utils/app_colors.dart';
@@ -88,7 +89,7 @@ class FirstPageHomeScreen extends StatelessWidget {
                 top: screen.height * 0.056,
                 // left: 12,
               ),
-              child: _InkwellRows(
+              child: _InkwellRow(
                 screen: screen,
               ),
             ),
@@ -218,8 +219,8 @@ class _BuyOrDelivery extends StatelessWidget {
   }
 }
 
-class _InkwellRows extends StatelessWidget {
-  const _InkwellRows({
+class _InkwellRow extends StatelessWidget {
+  const _InkwellRow({
     Key? key,
     required this.screen,
     // required this.sum,
@@ -231,19 +232,26 @@ class _InkwellRows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: screen.height * 0.037,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          return _Shop(
-            screen: screen,
-            icon: AppImages.amazon,
-            onTap: () {},
-          );
-        },
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: screen.height * 0.037,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 8,
+            itemBuilder: (BuildContext context, int index) {
+              return _Shop(
+                screen: screen,
+                icon: AppImages.amazon,
+                onTap: () {},
+              );
+            },
+          ),
+        ),
+        _GoodsRow(
+          screen: screen,
+        ),
+      ],
     );
   }
 }
@@ -273,5 +281,197 @@ class _Shop extends StatelessWidget {
             ),
           ),
         ));
+  }
+}
+
+class _GoodsRow extends StatelessWidget {
+  const _GoodsRow({
+    Key? key,
+    required this.screen,
+    // required this.sum,
+    // required this.sumUah,
+  }) : super(key: key);
+  final Size screen;
+  // final String sum;
+  // final String sumUah;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: screen.height * 0.045),
+      child: SizedBox(
+        height: screen.height * 0.29,
+        // width: screen.width * 0.45,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 10,
+          itemBuilder: (BuildContext context, int index) {
+            return _Goods(
+              screen: screen,
+              icon: AppImages.amazon,
+              onTap: () {},
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class _Goods extends StatelessWidget {
+  const _Goods({
+    Key? key,
+    required this.screen,
+    required this.icon,
+    required this.onTap,
+  }) : super(key: key);
+  final Size screen;
+  final String icon;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: screen.height * 0.29,
+      width: screen.width * 0.45,
+      child: Stack(
+        alignment: AlignmentDirectional.topEnd,
+        children: [
+          _Card(
+            icon:
+                'https://columbia.scene7.com/is/image/ColumbiaSportswear2/1988732_327_f?wid=768&hei=806&v=1642418206',
+            screen: screen,
+            onTap: () {},
+            shop: 'www.columbia.сom',
+            name: 'Flash Challenger',
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: screen.height * 0.037),
+            child: _Price(
+              screen: screen,
+              price: '75\$',
+              color: AppColors.shadowPrice,
+            ),
+          ),
+          _Price(
+            screen: screen,
+            price: '50\$',
+            color: AppColors.textColor,
+            colorShadow: AppColors.shadowPriceOp,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Card extends StatelessWidget {
+  const _Card({
+    Key? key,
+    required this.screen,
+    required this.icon,
+    required this.onTap,
+    required this.shop,
+    required this.name,
+  }) : super(key: key);
+  final Size screen;
+  final String icon;
+  final String shop;
+  final String name;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.only(
+          top: screen.height * 0.03,
+        ),
+        height: screen.height * 0.26,
+        width: screen.width * 0.43,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: CachedNetworkImageProvider(icon),
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.topCenter,
+            // opacity: 0.5,
+          ),
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color:
+                AppColors.grayBackground, //                   <--- border color
+            width: 2,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              name,
+              style: TextStyle(
+                color: AppColors.black,
+                fontSize: screen.height * 0.017,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            Text(
+              shop,
+              style: TextStyle(
+                color: AppColors.black,
+                fontSize: screen.height * 0.017,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Price extends StatelessWidget {
+  const _Price({
+    Key? key,
+    required this.screen,
+    required this.price,
+    required this.color,
+    this.colorShadow,
+  }) : super(key: key);
+  final Size screen;
+  final String price;
+  final Color color;
+  final Color? colorShadow;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: screen.height * 0.06,
+      width: screen.height * 0.06,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(50),
+        boxShadow: colorShadow != null
+            ? [
+                BoxShadow(
+                  color: colorShadow!,
+                  offset: const Offset(0.0, 15.0),
+                  blurRadius: 20.0,
+                ),
+              ]
+            : null,
+      ),
+      child: Center(
+        child: Text(
+          price,
+          style: TextStyle(
+            color: AppColors.white,
+            fontSize: screen.height * 0.019,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ),
+    );
   }
 }

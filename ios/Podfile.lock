@@ -692,6 +692,9 @@ PODS:
     - Flutter
   - flutter_native_splash (0.0.1):
     - Flutter
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - google_sign_in_ios (0.0.1):
     - Flutter
     - GoogleSignIn (~> 6.2)
@@ -788,6 +791,9 @@ PODS:
   - path_provider_ios (0.0.1):
     - Flutter
   - PromisesObjC (2.1.1)
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -799,6 +805,7 @@ DEPENDENCIES:
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
@@ -820,6 +827,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseStorage
     - FirebaseStorageInternal
+    - FMDB
     - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
@@ -851,6 +859,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
   path_provider_ios:
     :path: ".symlinks/plugins/path_provider_ios/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -878,6 +888,7 @@ SPEC CHECKSUMS:
   Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_facebook_auth: dfd6b2563406c538098e2127512d385c9ffd70ad
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_sign_in_ios: 4f85eb9f937450765c8573bb85fd8cd6a5af675c
   GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
   GoogleSignIn: 3c68388ac221f379676e8f1cb115df3aaf73b93f
@@ -891,6 +902,7 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
 
 PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
