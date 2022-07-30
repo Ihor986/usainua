@@ -5,10 +5,10 @@ import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/widgets/green_button.dart';
-import 'package:usainua/widgets/list_tile_button.dart';
+import 'package:usainua/widgets/big_button.dart';
 import 'package:usainua/widgets/income%20screen/media_income_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -223,7 +223,7 @@ class _SignUpFormState extends State<_SignUpForm> {
               ),
               Padding(
                 padding: const EdgeInsets.all(5),
-                child: GreenButton(
+                child: BigButton(
                   text: 'Зарегистрироваться',
                   onPressed: () {
                     if (!_formKey.currentState!.validate()) return;
@@ -232,6 +232,9 @@ class _SignUpFormState extends State<_SignUpForm> {
                     Navigator.pushNamedAndRemoveUntil(context,
                         CodeConfirmationsScreen.routeName, (route) => false);
                   },
+                  color: AppColors.greenButtonColor,
+                  shadowColor: AppColors.greenButtonShadowColor,
+                  textColor: AppColors.greenButtonTextColor,
                 ),
               ),
             ],

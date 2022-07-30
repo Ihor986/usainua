@@ -1,33 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:usainua/utils/app_colors.dart';
 
-class GreenButton extends StatelessWidget {
-  const GreenButton({
+class BigButton extends StatelessWidget {
+  const BigButton({
     Key? key,
     required this.onPressed,
     required this.text,
+    required this.color,
+    required this.shadowColor,
+    required this.textColor,
   }) : super(key: key);
 
   final void Function() onPressed;
   final String text;
+  final Color color;
+  final Color shadowColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
     return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(
           Radius.circular(16.0),
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.greenButtonShadowColor,
+            color: shadowColor,
             // spreadRadius: 5,
             blurRadius: 5,
-            offset: Offset(0, 10),
+            offset: const Offset(0, 10),
           ),
         ],
-        color: AppColors.greenButtonColor,
+        color: color,
       ),
       width: screen.width - 42,
       height: 56,
@@ -36,8 +41,8 @@ class GreenButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text.toUpperCase(),
-          style: const TextStyle(
-            color: AppColors.greenButtonTextColor,
+          style: TextStyle(
+            color: textColor,
           ),
         ),
       ),

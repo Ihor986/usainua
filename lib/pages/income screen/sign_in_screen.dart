@@ -8,10 +8,10 @@ import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/widgets/green_button.dart';
-import 'package:usainua/widgets/list_tile_button.dart';
+import 'package:usainua/widgets/big_button.dart';
 import 'package:usainua/widgets/income%20screen/media_income_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({
@@ -170,7 +170,7 @@ class __IncomeFormState extends State<_IncomeForm> {
               ),
               Padding(
                 padding: const EdgeInsets.all(5),
-                child: GreenButton(
+                child: BigButton(
                   text: 'ВОЙТИ',
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(context,
@@ -192,6 +192,9 @@ class __IncomeFormState extends State<_IncomeForm> {
                         CodeConfirmationsSignInScreen.routeName,
                         (route) => false);
                   },
+                  color: AppColors.greenButtonColor,
+                  shadowColor: AppColors.greenButtonShadowColor,
+                  textColor: AppColors.greenButtonTextColor,
                 ),
               ),
               _ListTileButtons(screen: widget.screen),

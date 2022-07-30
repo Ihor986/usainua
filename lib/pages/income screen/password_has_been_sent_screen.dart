@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_images.dart';
-import 'package:usainua/widgets/green_button.dart';
+import 'package:usainua/widgets/big_button.dart';
 
 class PasswordHasBeenSentScreen extends StatelessWidget {
   const PasswordHasBeenSentScreen({Key? key}) : super(key: key);
@@ -115,12 +115,15 @@ class _Next extends StatelessWidget {
     return Padding(
       padding:
           EdgeInsets.only(top: screen.height * 0.84 - 16, left: 5, right: 5),
-      child: GreenButton(
+      child: BigButton(
         text: 'ПРОДОЛЖИТЬ',
         onPressed: () {
           Navigator.pushNamedAndRemoveUntil(
               context, SignInScreen.routeName, (route) => false);
         },
+        color: AppColors.greenButtonColor,
+        shadowColor: AppColors.greenButtonShadowColor,
+        textColor: AppColors.greenButtonTextColor,
       ),
     );
   }

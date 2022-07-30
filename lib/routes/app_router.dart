@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/box%20screen/first_page.dart';
 import 'package:usainua/pages/choice%20screen/first_page.dart';
+import 'package:usainua/pages/home%20screen/buy_and_delivery_page.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
-import 'package:usainua/pages/main_screen.dart';
+import 'package:usainua/pages/home%20screen/only_delivery_page.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_signin_screen.dart';
 import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart';
 import 'package:usainua/pages/income%20screen/remind_password_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/pages/income%20screen/sign_up_screen.dart';
+import 'package:usainua/pages/main_screen.dart';
 import 'package:usainua/pages/profile/first_page.dart';
 
 class AppRouter {
@@ -63,6 +65,14 @@ class AppRouter {
         builder = (_) => const FirstPageHomeScreen();
         break;
 
+      case BuyAndDeliveryPage.routeName:
+        builder = (_) => const BuyAndDeliveryPage();
+        break;
+
+      case OnlyDeliveryPage.routeName:
+        builder = (_) => const OnlyDeliveryPage();
+        break;
+
       // box screen
 
       case FirstPageProBoxScreen.routeName:
@@ -81,8 +91,8 @@ class AppRouter {
         builder = (_) => const FirstPageProChoiceScreen();
         break;
 
-      // case FirstPageProChoiceScreen.routeName:
-      //   builder = (_) => const FirstPageProChoiceScreen();
+      // case OnlyDeliveryPage.routeName:
+      //   builder = (_) => const OnlyDeliveryPage();
       //   break;
 
       // case PasswordHasBeenSentScreen.routeName:

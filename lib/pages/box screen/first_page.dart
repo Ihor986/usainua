@@ -1,10 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:usainua/utils/app_colors.dart';
-import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
-import 'package:usainua/widgets/list_tile_button.dart';
 
 class FirstPageProBoxScreen extends StatelessWidget {
   const FirstPageProBoxScreen({Key? key}) : super(key: key);
@@ -12,7 +7,7 @@ class FirstPageProBoxScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screen = MediaQuery.of(context).size;
+    // final Size screen = MediaQuery.of(context).size;
     return Scaffold(
       // appBar: AppBar(
       //     backgroundColor: AppColors.white,

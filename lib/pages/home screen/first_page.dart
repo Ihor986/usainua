@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:usainua/pages/home%20screen/buy_and_delivery_page.dart';
+import 'package:usainua/pages/home%20screen/only_delivery_page.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/utils/app_images.dart';
@@ -38,62 +40,76 @@ class FirstPageHomeScreen extends StatelessWidget {
               ),
             ),
           ]),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            _BalanceRow(
-              screen: screen,
-              sum: '358.93 \$',
-              sumUah: ' \\ 11157 грн',
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: screen.height * 0.04),
-              child: Column(
-                children: [
-                  _BuyOrDelivery(
-                    color: AppColors.mediaButtonBackgroundColor,
-                    colorCircular: AppColors.greenButtonColor,
-                    text: 'Покупка и доставка',
-                    icon: AppImages.car,
-                    screen: screen,
-                  ),
-                  const SizedBox(
-                    height: 11,
-                  ),
-                  _BuyOrDelivery(
-                    color: AppColors.grayBackground,
-                    colorCircular: AppColors.textColor,
-                    text: 'Только доставка',
-                    icon: AppImages.plane,
-                    screen: screen,
-                  ),
-                ],
-              ),
-
-              // _RowButton(screen:screen)
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: screen.height * 0.02,
-                left: 12,
-              ),
-              child: ListTileButton(
-                text: 'Тарифы на услуги доставки',
-                icon: AppIcons.calculator,
-                onTap: () {},
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: screen.height * 0.056,
-                // left: 12,
-              ),
-              child: _InkwellRow(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              _BalanceRow(
                 screen: screen,
+                sum: '358.93 \$',
+                sumUah: ' \\ 11157 грн',
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(top: screen.height * 0.04),
+                child: Column(
+                  children: [
+                    _BuyOrDelivery(
+                      color: AppColors.mediaButtonBackgroundColor,
+                      colorCircular: AppColors.greenButtonColor,
+                      text: 'Покупка и доставка',
+                      icon: AppImages.car,
+                      screen: screen,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          BuyAndDeliveryPage.routeName,
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 11,
+                    ),
+                    _BuyOrDelivery(
+                      color: AppColors.grayBackground,
+                      colorCircular: AppColors.textColor,
+                      text: 'Только доставка',
+                      icon: AppImages.plane,
+                      screen: screen,
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          OnlyDeliveryPage.routeName,
+                        );
+                      },
+                    ),
+                  ],
+                ),
+
+                // _RowButton(screen:screen)
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: screen.height * 0.02,
+                  left: 12,
+                ),
+                child: ListTileButton(
+                  text: 'Тарифы на услуги доставки',
+                  icon: AppIcons.calculator,
+                  onTap: () {},
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: screen.height * 0.056,
+                  // left: 12,
+                ),
+                child: _InkwellRow(
+                  screen: screen,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       backgroundColor: AppColors.white,
@@ -162,58 +178,63 @@ class _BuyOrDelivery extends StatelessWidget {
     required this.icon,
     required this.color,
     required this.colorCircular,
+    required this.onTap,
   }) : super(key: key);
   final Size screen;
   final String text;
   final String icon;
   final Color color;
   final Color colorCircular;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.all(screen.height * 0.03),
-      height: screen.height * 0.095,
-      width: screen.width * 0.88,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      foregroundDecoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(icon),
-          alignment: Alignment.centerRight,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        // padding: EdgeInsets.all(screen.height * 0.03),
+        height: screen.height * 0.095,
+        width: screen.width * 0.88,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: screen.height * 0.03),
-            child: Text(
-              text,
-              style: TextStyle(
-                color: AppColors.textColor,
-                fontSize: screen.height * 0.025,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0.5,
-              ),
-            ),
+        foregroundDecoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(icon),
+            alignment: Alignment.centerRight,
           ),
-          Container(
-            height: screen.height * 0.099,
-            width: screen.height * 0.095,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
-                bottomLeft: Radius.circular(50),
-                topRight: Radius.circular(15),
-                bottomRight: Radius.circular(15),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: screen.height * 0.03),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: AppColors.textColor,
+                  fontSize: screen.height * 0.025,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.5,
+                ),
               ),
-              color: colorCircular,
             ),
-          )
-        ],
+            Container(
+              height: screen.height * 0.099,
+              width: screen.height * 0.095,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  bottomLeft: Radius.circular(50),
+                  topRight: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
+                ),
+                color: colorCircular,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

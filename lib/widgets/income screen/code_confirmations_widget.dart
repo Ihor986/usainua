@@ -7,10 +7,10 @@ import 'package:usainua/bloc/auth_bloc/auth_bloc.dart';
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/widgets/green_button.dart';
+import 'package:usainua/widgets/big_button.dart';
 import 'package:usainua/widgets/income%20screen/hint_text.dart';
-import 'package:usainua/widgets/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 
 class CodeConfirmationsWidget extends StatelessWidget {
   const CodeConfirmationsWidget({
@@ -150,9 +150,12 @@ class _SignUpFormState extends State<_SignUpForm> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(5),
-                  child: GreenButton(
+                  child: BigButton(
                     text: widget.text,
                     onPressed: widget.onClick,
+                    color: AppColors.greenButtonColor,
+                    shadowColor: AppColors.greenButtonShadowColor,
+                    textColor: AppColors.greenButtonTextColor,
                   ),
                 ),
               ],

@@ -3,10 +3,10 @@ import 'package:usainua/pages/income%20screen/password_has_been_sent_screen.dart
 import 'package:usainua/pages/income%20screen/sign_in_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
-import 'package:usainua/widgets/green_button.dart';
+import 'package:usainua/widgets/big_button.dart';
 import 'package:usainua/widgets/income%20screen/hint_text.dart';
-import 'package:usainua/widgets/list_tile_button.dart';
 import 'package:usainua/widgets/income%20screen/text_income.dart';
+import 'package:usainua/widgets/list_tile_button.dart';
 
 class RemindPasswordScreen extends StatelessWidget {
   const RemindPasswordScreen({Key? key}) : super(key: key);
@@ -95,12 +95,15 @@ class _RemindPasswordButton extends StatelessWidget {
           EdgeInsets.only(top: screen.height * 0.43 - 16, left: 5, right: 5),
       child: Column(
         children: [
-          GreenButton(
+          BigButton(
             text: 'НАПОМНИТЬ ПАРОЛЬ',
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(context,
                   PasswordHasBeenSentScreen.routeName, (route) => false);
             },
+            color: AppColors.greenButtonColor,
+            shadowColor: AppColors.greenButtonShadowColor,
+            textColor: AppColors.greenButtonTextColor,
           ),
           // SizedBox(
           //   height: screen.height * 0.04,

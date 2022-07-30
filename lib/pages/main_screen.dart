@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:usainua/bloc/navigation_bloc/navigation_bloc.dart';
-import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/box%20screen/first_page.dart';
 import 'package:usainua/pages/choice%20screen/first_page.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';

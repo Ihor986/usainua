@@ -11,6 +11,7 @@ class AppIcons {
   static const String greenCheck = 'assets/icons/greenCheck.svg';
   static const String snake = 'assets/icons/snake.svg';
   static const String snakePng = 'assets/icons/snakePng.png';
+  static const String snake2Png = 'assets/icons/snake2.png';
   static const String buy = 'assets/icons/Buy.svg';
   static const String moneyBag = 'assets/icons/money-bag.svg';
   static const String location = 'assets/icons/location.svg';
@@ -30,7 +31,7 @@ class AppIcons {
   static const String choiceBold = 'assets/icons/Bagbold.svg';
   static const String box = 'assets/icons/box.svg';
   static const String boxBold = 'assets/icons/box.svg';
-  // static const String emptyfoto = 'assets/icons/emptyfoto.svg';
+  static const String locationHome = 'assets/icons/locationHome.svg';
   // static const String arrowDownCircle = 'assets/icons/arrowDownCircle.svg';
   // static const String arrowLeftCircle = 'assets/icons/arrowLeftCircle.svg';
   // static const String plusPlus = 'assets/icons/plusPlus.svg';

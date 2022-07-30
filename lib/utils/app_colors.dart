@@ -8,6 +8,7 @@ class AppColors {
   static const Color greenButtonColor = Color(0xFF0FC494);
   static const Color greenButtonShadowColor = Color(0x330FC494);
   static const Color blueIconsColor = Color(0xFF0066FF);
+  static const Color blueIconsShadowColor = Color(0x330066FF);
   static const Color disactiveTextColor = Color(0xFFA7B0C0);
   static const Color textColorOp = Color(0x33133B77);
   static const Color greenButtonTextColor = Color(0xFF056249);

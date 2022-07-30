@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
+import 'package:usainua/widgets/delivery_type_container.dart';
 
 class FourthPage extends StatefulWidget {
   const FourthPage({
@@ -58,37 +58,40 @@ class _FourthPageState extends State<FourthPage> {
               ),
             ),
           ),
-          isOnlyDelivery
-              ? _DeliveryTypeContainer(
-                  screen: widget.screen,
-                  text1:
-                      '\nСкопируйте адреса складов, на \nкоторые Вы сможете доставлять \nсамостоятельно купленные заказы',
-                  text2: '\nВведите трекинг-номер, полученный от \nмагазина.',
-                  text3: '\nВыберите способ доставки и оплатите \nзаказ',
-                  text4:
-                      '\n\n\nТеперь остается всего немного \nподождать, и посылка у Вас! \nPS.... можете отслеживать ее в своем \nкабинете',
-                  icon1: AppIcons.copyLocation,
-                  icon2: AppIcons.edit,
-                  icon3: AppIcons.moneyBag,
-                  icon4: AppIcons.location,
-                  color: AppColors.blueIconsColor,
-                )
-              : _DeliveryTypeContainer(
-                  screen: widget.screen,
-                  text1:
-                      '\nВыберите желаемые товары в\n интернет-магазинах США/Европы.',
-                  text2:
-                      '\nСкопируйте ссылки на выбранные \nтовары в форму заказа.',
-                  text3:
-                      '\n\nВ течение 30 минут в кабинете \nпоявится расчёт стоимости покупки \nтоваров с доставкой.',
-                  text4:
-                      '\n\nМы выкупим Ваш заказ, и привезем его \nк Вам. Вы сможете отслеживать его в \nличном кабинете.',
-                  icon1: AppIcons.buy,
-                  icon2: AppIcons.copy,
-                  icon3: AppIcons.moneyBag,
-                  icon4: AppIcons.location,
-                  color: AppColors.greenButtonColor,
-                ),
+          Align(
+            alignment: const Alignment(0, 0.12),
+            child: isOnlyDelivery
+                ? DeliveryTypeContainer(
+                    screen: widget.screen,
+                    text1:
+                        '\nСкопируйте адреса складов, на \nкоторые Вы сможете доставлять \nсамостоятельно купленные заказы',
+                    text2: '\nВведите трекинг-номер, полученный от \nмагазина.',
+                    text3: '\nВыберите способ доставки и оплатите \nзаказ',
+                    text4:
+                        '\n\n\nТеперь остается всего немного \nподождать, и посылка у Вас! \nPS.... можете отслеживать ее в своем \nкабинете',
+                    icon1: AppIcons.copyLocation,
+                    icon2: AppIcons.edit,
+                    icon3: AppIcons.moneyBag,
+                    icon4: AppIcons.location,
+                    color: AppColors.blueIconsColor,
+                  )
+                : DeliveryTypeContainer(
+                    screen: widget.screen,
+                    text1:
+                        '\nВыберите желаемые товары в\n интернет-магазинах США/Европы.',
+                    text2:
+                        '\nСкопируйте ссылки на выбранные \nтовары в форму заказа.',
+                    text3:
+                        '\n\nВ течение 30 минут в кабинете \nпоявится расчёт стоимости покупки \nтоваров с доставкой.',
+                    text4:
+                        '\n\nМы выкупим Ваш заказ, и привезем его \nк Вам. Вы сможете отслеживать его в \nличном кабинете.',
+                    icon1: AppIcons.buy,
+                    icon2: AppIcons.copy,
+                    icon3: AppIcons.moneyBag,
+                    icon4: AppIcons.location,
+                    color: AppColors.greenButtonColor,
+                  ),
+          ),
         ],
       ),
     );
@@ -165,132 +168,132 @@ class _ButtonRow extends StatelessWidget {
   }
 }
 
-class _DeliveryTypeContainer extends StatelessWidget {
-  const _DeliveryTypeContainer({
-    Key? key,
-    required this.screen,
-    required this.text1,
-    required this.text2,
-    required this.text3,
-    required this.text4,
-    required this.icon1,
-    required this.icon2,
-    required this.icon3,
-    required this.icon4,
-    required this.color,
-  }) : super(key: key);
-  final Size screen;
-  final String text1;
-  final String text2;
-  final String text3;
-  final String text4;
-  final String icon1;
-  final String icon2;
-  final String icon3;
-  final String icon4;
-  final Color color;
+// class _DeliveryTypeContainer extends StatelessWidget {
+//   const _DeliveryTypeContainer({
+//     Key? key,
+//     required this.screen,
+//     required this.text1,
+//     required this.text2,
+//     required this.text3,
+//     required this.text4,
+//     required this.icon1,
+//     required this.icon2,
+//     required this.icon3,
+//     required this.icon4,
+//     required this.color,
+//   }) : super(key: key);
+//   final Size screen;
+//   final String text1;
+//   final String text2;
+//   final String text3;
+//   final String text4;
+//   final String icon1;
+//   final String icon2;
+//   final String icon3;
+//   final String icon4;
+//   final Color color;
 
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: const Alignment(0, 0.12),
-      child: SizedBox(
-        height: 0.5 * screen.height,
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _LineRow(
-                  color: color,
-                  text: text1,
-                  icon: icon1,
-                  screen: screen,
-                ),
-                _LineRow(
-                  color: color,
-                  text: text4,
-                  icon: icon4,
-                  screen: screen,
-                ),
-              ],
-            ),
-            Center(
-              child: SizedBox(
-                height: 0.25 * screen.height,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _LineRow(
-                      color: color,
-                      text: text2,
-                      icon: icon2,
-                      screen: screen,
-                    ),
-                    _LineRow(
-                      color: color,
-                      text: text3,
-                      icon: icon3,
-                      screen: screen,
-                    ),
-                    const SizedBox(),
-                  ],
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                foregroundDecoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      AppIcons.snakePng,
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                height: 0.33 * screen.height,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Align(
+//       alignment: const Alignment(0, 0.12),
+//       child: SizedBox(
+//         height: 0.5 * screen.height,
+//         child: Stack(
+//           children: [
+//             Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 _LineRow(
+//                   color: color,
+//                   text: text1,
+//                   icon: icon1,
+//                   screen: screen,
+//                 ),
+//                 _LineRow(
+//                   color: color,
+//                   text: text4,
+//                   icon: icon4,
+//                   screen: screen,
+//                 ),
+//               ],
+//             ),
+//             Center(
+//               child: SizedBox(
+//                 height: 0.25 * screen.height,
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     _LineRow(
+//                       color: color,
+//                       text: text2,
+//                       icon: icon2,
+//                       screen: screen,
+//                     ),
+//                     _LineRow(
+//                       color: color,
+//                       text: text3,
+//                       icon: icon3,
+//                       screen: screen,
+//                     ),
+//                     const SizedBox(),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//             Center(
+//               child: Container(
+//                 foregroundDecoration: const BoxDecoration(
+//                   image: DecorationImage(
+//                     image: AssetImage(
+//                       AppIcons.snakePng,
+//                     ),
+//                     fit: BoxFit.fill,
+//                   ),
+//                 ),
+//                 height: 0.33 * screen.height,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class _LineRow extends StatelessWidget {
-  const _LineRow({
-    Key? key,
-    required this.screen,
-    required this.text,
-    required this.icon,
-    required this.color,
-  }) : super(key: key);
-  final Size screen;
-  final String text;
-  final String icon;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SvgPicture.asset(
-          icon,
-          alignment: Alignment.topCenter,
-          color: color,
-        ),
-        Text(
-          text,
-          style: TextStyle(
-            color: AppColors.textColor,
-            fontSize: screen.height * 0.017,
-            fontWeight: FontWeight.w400,
-            letterSpacing: 0.5,
-          ),
-        ),
-        const SizedBox(),
-      ],
-    );
-  }
-}
+// class _LineRow extends StatelessWidget {
+//   const _LineRow({
+//     Key? key,
+//     required this.screen,
+//     required this.text,
+//     required this.icon,
+//     required this.color,
+//   }) : super(key: key);
+//   final Size screen;
+//   final String text;
+//   final String icon;
+//   final Color color;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//       children: [
+//         SvgPicture.asset(
+//           icon,
+//           alignment: Alignment.topCenter,
+//           color: color,
+//         ),
+//         Text(
+//           text,
+//           style: TextStyle(
+//             color: AppColors.textColor,
+//             fontSize: screen.height * 0.017,
+//             fontWeight: FontWeight.w400,
+//             letterSpacing: 0.5,
+//           ),
+//         ),
+//         const SizedBox(),
+//       ],
+//     );
+//   }
+// }
