@@ -44,7 +44,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             alignment: AlignmentDirectional.bottomCenter,
             children: [
               Container(
-                width: widget.screen.width * 0.99,
+                width: widget.screen.width * 0.94,
                 height: widget.screen.height * 0.062,
                 // padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(

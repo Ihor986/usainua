@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:usainua/pages/home%20screen/bloc/calculation_bloc.dart';
+import 'package:usainua/pages/home%20screen/delivery_calculate_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/big_button.dart';
@@ -7,22 +10,13 @@ import 'package:usainua/widgets/delivery_type_container.dart';
 import 'package:usainua/widgets/home%20screen/header.dart';
 import 'package:usainua/widgets/tittle_text.dart';
 
-class BuyAndDeliveryPage extends StatefulWidget {
+class BuyAndDeliveryPage extends StatelessWidget {
   const BuyAndDeliveryPage({
     Key? key,
     // required this.screen,
   }) : super(key: key);
 
-  // final Size screen;
   static const routeName = '/BuyAndDeliveryPage';
-
-  @override
-  State<BuyAndDeliveryPage> createState() => _BuyAndDeliveryPageState();
-}
-
-bool isOnlyDelivery = false;
-
-class _BuyAndDeliveryPageState extends State<BuyAndDeliveryPage> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -69,7 +63,15 @@ class _BuyAndDeliveryPageState extends State<BuyAndDeliveryPage> {
             Align(
               alignment: const Alignment(0, 0.64),
               child: BigButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CalculationBloc>().add(
+                        ChangeCalculation(isOnlyDelivery: false),
+                      );
+                  Navigator.pushNamed(
+                    context,
+                    DeliveryCalculatePage.routeName,
+                  );
+                },
                 text: 'Рассчитать покупку и доставку',
                 color: AppColors.greenButtonColor,
                 shadowColor: AppColors.greenButtonShadowColor,

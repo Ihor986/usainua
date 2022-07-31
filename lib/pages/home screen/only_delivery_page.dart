@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:usainua/pages/home%20screen/bloc/calculation_bloc.dart';
+import 'package:usainua/pages/home%20screen/delivery_calculate_screen.dart';
 import 'package:usainua/utils/app_colors.dart';
 import 'package:usainua/utils/app_icons.dart';
 import 'package:usainua/widgets/big_button.dart';
@@ -7,7 +10,7 @@ import 'package:usainua/widgets/delivery_type_container.dart';
 import 'package:usainua/widgets/home%20screen/header.dart';
 import 'package:usainua/widgets/tittle_text.dart';
 
-class OnlyDeliveryPage extends StatefulWidget {
+class OnlyDeliveryPage extends StatelessWidget {
   const OnlyDeliveryPage({
     Key? key,
     // required this.screen,
@@ -16,13 +19,6 @@ class OnlyDeliveryPage extends StatefulWidget {
   // final Size screen;
   static const routeName = '/OnlyDeliveryPage';
 
-  @override
-  State<OnlyDeliveryPage> createState() => _OnlyDeliveryPageState();
-}
-
-bool isOnlyDelivery = false;
-
-class _OnlyDeliveryPageState extends State<OnlyDeliveryPage> {
   @override
   Widget build(BuildContext context) {
     final Size screen = MediaQuery.of(context).size;
@@ -69,7 +65,15 @@ class _OnlyDeliveryPageState extends State<OnlyDeliveryPage> {
             Align(
               alignment: const Alignment(0, 0.64),
               child: BigButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CalculationBloc>().add(
+                        ChangeCalculation(isOnlyDelivery: true),
+                      );
+                  Navigator.pushNamed(
+                    context,
+                    DeliveryCalculatePage.routeName,
+                  );
+                },
                 text: 'Рассчитать только доставку',
                 color: AppColors.blueIconsColor,
                 shadowColor: AppColors.blueIconsShadowColor,

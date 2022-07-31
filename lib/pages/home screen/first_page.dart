@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:usainua/pages/home%20screen/bloc/calculation_bloc.dart';
 import 'package:usainua/pages/home%20screen/buy_and_delivery_page.dart';
 import 'package:usainua/pages/home%20screen/only_delivery_page.dart';
 import 'package:usainua/utils/app_colors.dart';
@@ -48,7 +50,7 @@ class FirstPageHomeScreen extends StatelessWidget {
               _BalanceRow(
                 screen: screen,
                 sum: '358.93 \$',
-                sumUah: ' \\ 11157 грн',
+                sumUah: ' \ 11157 грн',
               ),
               Padding(
                 padding: EdgeInsets.only(top: screen.height * 0.04),

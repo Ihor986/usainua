@@ -3,6 +3,7 @@ import 'package:usainua/pages/acquaintance%20screen/acquaintance_page.dart';
 import 'package:usainua/pages/box%20screen/first_page.dart';
 import 'package:usainua/pages/choice%20screen/first_page.dart';
 import 'package:usainua/pages/home%20screen/buy_and_delivery_page.dart';
+import 'package:usainua/pages/home%20screen/delivery_calculate_screen.dart';
 import 'package:usainua/pages/home%20screen/first_page.dart';
 import 'package:usainua/pages/home%20screen/only_delivery_page.dart';
 import 'package:usainua/pages/income%20screen/code_confirmations_screen.dart';
@@ -18,7 +19,7 @@ class AppRouter {
   const AppRouter._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    // final Object? arguments = settings.arguments;
+    final Object? arguments = settings.arguments;
 
     WidgetBuilder builder;
 
@@ -73,6 +74,10 @@ class AppRouter {
         builder = (_) => const OnlyDeliveryPage();
         break;
 
+      case DeliveryCalculatePage.routeName:
+        builder = (_) => const DeliveryCalculatePage();
+        break;
+
       // box screen
 
       case FirstPageProBoxScreen.routeName:
@@ -91,8 +96,8 @@ class AppRouter {
         builder = (_) => const FirstPageProChoiceScreen();
         break;
 
-      // case OnlyDeliveryPage.routeName:
-      //   builder = (_) => const OnlyDeliveryPage();
+      // case DeliveryCalculatePage.routeName:
+      //   builder = (_) => const DeliveryCalculatePage();
       //   break;
 
       // case PasswordHasBeenSentScreen.routeName:
